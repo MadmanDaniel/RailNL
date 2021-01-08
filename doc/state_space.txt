@@ -1,0 +1,68 @@
+1.
+Order=no, Rep=no
+r=12, n=20
+formula = (n!)/(r!(n-r)!)
+ans = 125970
+---
+2.
+Je begint altijd bij hetzelfde beginpunt, dus volgorde is van belang.
+Order=yes, Rep=yes
+r=20, n=3
+formula = n^r
+ans = 3.5(×10^9)
+---
+3.
+Er zijn meer dozen water,fruit en boordjes dan dat er in de bestelbus past dus er kan herhaaldelijk dezelfde keuze gemaakt worden.
+Order=no, Rep=yes
+r=25, n=3
+formula = (r+n-1)!/(r!(n-1)!)
+ans = 351
+---
+4.
+Ik vind de vraag vaag. Kan er uit 110 vakken gekozen worden wanneer een extra vak wordt gekozen? Zo ja:
+Order=no, Rep=no
+r=(0 of 1 of 2), n=110
+formula = (n!)/(r!(n-r)!)
+30vakken=1
+31vakken=110
+32vakken=5995
+---
+5.
+Het lot heeft een vaste volgorde DBFAECG en een A t/m Z kan niet herhaald worden.
+Order=yes, Rep=no
+r=7, n=26
+formula = (n!)/(n-r)!)
+ans = 3.3(×10^9)
+---
+6.
+Hoe moet je uit deze vraag uithalen of de volgorde uitmaakt of niet?? Verschillende volgordes kunnen in principe dezelfde lading zijn?
+Er zijn nu minder boordjes(30) dan dat er in de bestelbus passen(45) dus herhalen is op een bepaald moment niet meer mogelijk?
+Order=no, Rep=yes
+r=45, n=3
+formula = (r+n-1)!/(r!(n-1)!)
+ans = 1081
+---
+7.
+RailNL
+
+- de fractie van de bereden verbindingen 
+- het aantal trajecten
+- aantal minuten van alle trajecten samen.
+
+- Het stoppen bij elk treinstation wordt niet meegenomen.
+- Snelheid van een intercity is constant ongeacht het spoor.
+- Er loopt geen vertraging 
+De volgorde van de trajecten maakt daarbij niet uit.
+verschillende trajecten kunnen daarbij niet hetzelfde traject hebben.
+
+(n!)/(r!(n-r)!)
+
+Stel je hebt een lijnvoering van 3 trajecten met elk 4 stations. Voor elk traject heb je 4! = 24 mogelijkheden. 
+Order=no, Rep=no
+r=3, n=24
+dus zijn er 2024 state spaces
+
+Er zijn 7 trajecten met 22 stations met tussenliggende spoorverbindingen.
+(22)!/(7!(22-7)!) = 170544
+Of als de Order en Rep beide 'yes' is: 
+28^7= 1.3(*10^10)
