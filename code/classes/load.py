@@ -2,7 +2,7 @@ import csv
 from .station import Station
 
 
-class Test():
+class Load():
 
     def __init__(self, station_file):
         self.stations = {}
@@ -16,7 +16,7 @@ class Test():
             header = next(infile)
 
             for line in reader:
-                # station, x_cor, y_cor
+                # order = station, x_cor, y_cor
                 station = Station(line[0], float(line[1]), float(line[2]))
                 self.stations[station.station_name] = station
 

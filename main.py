@@ -1,9 +1,8 @@
-from code.classes import station, test2
+from code.classes import station, load
 import csv
 
 if __name__ == "__main__":
 
-    
-    test = test2.Test("data/opdracht1/StationsHolland.csv")
+    loading_in_files = load.Load("data/opdracht1/StationsHolland.csv")
 
-    print(test.get())
+    print(loading_in_files.get())
