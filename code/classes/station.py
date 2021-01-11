@@ -11,6 +11,7 @@ class Station():
         self.ycoordination = ycoordination
         # self.distance = distance
         
+    # wordt nog niet gebruikt
     def add_connection(self, end_station, begin_station):
         self.connection[begin_station] = end_station
 

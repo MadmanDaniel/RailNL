@@ -1,24 +1,32 @@
-# #%%
+#%% 
+# Code hierboven is alleen nodig voor Matplotlib 
+# (dus visualisatie van de datapunten) -> is van extension Jupyter
 from code.classes import station, load
 import csv
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
 
 if __name__ == "__main__":
 
-    loading_in_files = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
+    data = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
     
     # all stations
-    print(loading_in_files.get_station())
+    print(data.get_station())
     print("------")
 
     # all connections
-    print(loading_in_files.get_con())
+    print(data.get_con())
+    print("------")
 
-    # #test grafiek
-    # import matplotlib.pyplot as plt
-    # import matplotlib as mpl
-    # import numpy as np
+    #---------------------------------
+    # # maken van grafiek dmv gegeven coordinaten
+    # # eerst alle stations uitbeelden
+    
+    # plt.scatter(x_cor, y_cor)
 
-    # x = load.Load.xcoordination
-    # y = station.Station.ycoordination
-    # plt.plot(x,y)
+    # plt.grid()
     # plt.show()
+    #----------------------------------
+
+    

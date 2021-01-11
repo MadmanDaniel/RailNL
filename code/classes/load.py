@@ -1,5 +1,6 @@
 import csv
 from .station import Station
+import matplotlib.pyplot as plt
 
 
 class Load():
@@ -9,9 +10,6 @@ class Load():
         self.connection = {}
         self.load_station(station_file)
         self.load_connection(connection_file)
-
-        self.test = self.stations["Alkmaar"]
-
         
 
     def load_station(self, station_file):
@@ -34,8 +32,8 @@ class Load():
                 end_station = self.stations[line[1]]
                 # distance = int(line[2])
                 
-                # The magic of setdefault is that it initializes the value for that key if that key is not defined, otherwise it does nothing. 
-                # Now, noting that setdefault returns the key you can combine these into a single line:
+                # "The magic of setdefault is that it initializes the value for that key if that key 
+                # is not defined, otherwise it does nothing. 
                 # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
                 self.connection.setdefault(begin_station.station_name, [])
                 self.connection[begin_station.station_name].append(end_station.station_name)
@@ -45,5 +43,24 @@ class Load():
 
     def get_con(self):
         return self.connection
+
+    def get_xcor(self):
+        # ik denk dat een loop niet effectief is om de x en y waardes uit te lezen voor een grafiek.
+        # Later moeten we dit misschien nog aanpassen 
+        x_cor = []
+        for x in self.stations.values():
+            x = x.xcoordination
+            x_cor.append(x)
+        return x_cor
+
+    def get_ycor(self):
+        y_cor = []
+        for y in self.stations.values():
+            y = y.ycoordination
+            y_cor.append(y)
+        return y_cor
+
+    
+
         
                 
