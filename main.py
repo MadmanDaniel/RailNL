@@ -7,7 +7,8 @@ if __name__ == "__main__":
     loading_in_files = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
     
     # all stations
-    # print(loading_in_files.get_station())
+    print(loading_in_files.get_station())
+    print("------")
 
     # all connections
     print(loading_in_files.get_con())

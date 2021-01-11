@@ -33,10 +33,13 @@ class Load():
                 begin_station = self.stations[line[0]]
                 end_station = self.stations[line[1]]
                 # distance = int(line[2])
-
-                self.connection[begin_station] = end_station
-                #begin_station.add_connection(end_station, begin_station)
-
+                
+                # The magic of setdefault is that it initializes the value for that key if that key is not defined, otherwise it does nothing. 
+                # Now, noting that setdefault returns the key you can combine these into a single line:
+                # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
+                self.connection.setdefault(begin_station.station_name, [])
+                self.connection[begin_station.station_name].append(end_station.station_name)
+                
     def get_station(self):
         return self.stations
 
