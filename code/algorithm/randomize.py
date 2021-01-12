@@ -8,3 +8,6 @@ class Random():
 
     def get_random(self):
         return self.connection
+
+    def make_traject(self):
+        pass

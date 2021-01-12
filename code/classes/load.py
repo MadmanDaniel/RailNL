@@ -30,14 +30,12 @@ class Load():
             for line in reader:
                 begin_station = self.stations[line[0]]
                 end_station = self.stations[line[1]]
-                # distance = int(line[2])
+                minutes = int(line[2])
                 
-                # "The magic of setdefault is that it initializes the value for that key if that key 
-                # is not defined, otherwise it does nothing. 
                 # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
-                self.connection.setdefault(begin_station.station_name, [])
-                self.connection[begin_station.station_name].append(end_station.station_name)
-                
+                self.connection.setdefault(begin_station.station_name, {})
+                self.connection[begin_station.station_name][end_station.station_name] = minutes
+   
     def get_station(self):
         return self.stations
 

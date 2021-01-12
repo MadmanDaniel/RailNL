@@ -5,32 +5,21 @@ from code.classes import station, load
 from code.algorithm import randomize
 
 import csv
-#import matplotlib.pyplot as plt
-#import networkx as nx
-#import numpy as np
 
 if __name__ == "__main__":
 
     data = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
 
-    random1 = randomize.Random(data)
-    print(random1.get_random())
+    # random1 = randomize.Random(data)
+    # print(random1.get_random())
 
-    # # all stations
+    # all stations
     # print(data.get_station())
     # print("------")
 
-    # # all connections
-    # print(data.get_con())
-    # print("------")
+    # all connections
+    print(data.get_con()["Alkmaar"])
+    print("------")
 
-    #---------------------------------
-    # # maken van grafiek dmv gegeven coordinaten
-    # # eerst alle stations uitbeelden
     
-    # plt.scatter(x_cor, y_cor)
-
-    # plt.grid()
-    # plt.show()
-    #----------------------------------
     
