@@ -14,7 +14,7 @@ if __name__ == "__main__":
     data = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
 
     random1 = randomize.Random(data)
-    print(random1.traject())
+    print(random1.get_traject())
     # print(random1.test())
     
 
