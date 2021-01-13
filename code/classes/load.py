@@ -33,8 +33,18 @@ class Load():
                 minutes = int(line[2])
                 
                 # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
+                # https://www.programiz.com/python-programming/nested-dictionary
+                # making of a nested dict
                 self.connection.setdefault(begin_station.station_name, {})
+                if begin_station.station_name not in self.connection:
+                    self.connection[begin_station.station_name] = {}
+                if end_station.station_name not in self.connection:
+                    self.connection[end_station.station_name] = {}
+                
                 self.connection[begin_station.station_name][end_station.station_name] = minutes
+                self.connection[end_station.station_name][begin_station.station_name] = minutes
+
+                
    
     def get_station(self):
         return self.stations
