@@ -22,10 +22,11 @@ def get_map(data):
             e= tuple(e)
             edges.append(e)
     P.add_edges_from(edges)
-
+    
     fig,ax = plt.subplots(1, figsize = (15,12))
     nx.draw(P, pos,with_labels = True)
     plt.show()
+    return P.edges()
     
     # print(data.get_cor())
    

@@ -14,6 +14,7 @@ class Random():
         self.p = []
         self.T = []
         self.Min = []
+        self.aantal_connections = 0
 
     def get_traject(self):
         """
@@ -73,6 +74,7 @@ class Random():
             get_rdm_station = get_rdm_connection
             
             traject.append(get_rdm_connection)
+            # self.aantal_connections =  self.aantal_connections +1
         
         return traject, sum(time)
     
@@ -106,22 +108,50 @@ class Random():
         total_stations = len(self.station)
 
         j=[]
-        for i in self.connection.keys():
-            j.append(i)
-        all_possible_trajects = len(j)
-        print(all_possible_trajects)
+        for i in self.connection.values():
+            for v in i:
+                j.append(v)
+
+        #nog hard code
+        all_possible_trajects = len(j) / 2 -3
+        
         lijnvoering = Random.make_lijnvoering(self)
 
         b = []
         for k in self.connection.values():
-            b.append(k)
-        print(b)
-        
-        # print(lijnvoering)
-        T = lijnvoering[1]
-        p = lijnvoering[2] 
-        
+            for v in k:
+                b.append(v)
+        # print(len(b))
 
+        all_trajects = all_possible_trajects - len(b)
+        
+        a = []
+        for x in lijnvoering[0]:
+            a.append(x[1])
+        
+        T = lijnvoering[1]
+        p = lijnvoering[2]/total_stations
+        Min = sum(a)
+        q = p*10000 -(T*100 + Min)
+
+        #https://www.geeksforgeeks.org/writing-csv-files-in-python/
+        rows = [
+            ['p', p],
+            ['T', T],
+            ['Min', Min],
+            ['q', q]
+
+        ]
+        filename = "data/quality/output.csv"
+
+        with open(filename, 'w') as infile:  
+            # creating a csv writer object  
+            csvwriter = csv.writer(infile) 
+                
+            # writing the data rows  
+            csvwriter.writerows(rows) 
+
+        return q
     
     
 
