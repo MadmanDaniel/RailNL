@@ -46,8 +46,13 @@ class Load():
     def get_station(self):
         return self.stations
 
-    def get_con(self):
-        return self.connection
+    # def get_con(self):
+    #     all_connections = 0
+    #     for key, value in self.connection.items():
+    #         print(key)
+    #         print(value)
+
+        return all_connections
 
     def get_cor(self):
         cor = {}
@@ -55,6 +60,8 @@ class Load():
             cor[key] = (value.xcoordination, value.ycoordination)
             
         return cor
+
+
 
 
         
