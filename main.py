@@ -33,6 +33,6 @@ if __name__ == "__main__":
 
     #---------------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    # graph = get_map(data)
+    graph = get_map(data)
     #----------------------------------
     
