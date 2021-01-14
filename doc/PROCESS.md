@@ -6,6 +6,7 @@
 - begin visualisatie gemaakt van de stations met connecties ertussen.
 
 ### 12/01/2021
+<<<<<<< HEAD
 - random Algoritme proberen toe te passen op ons probleem.
 - verder werken met grafiek. 
 - UML af.
@@ -15,3 +16,4 @@
 - gestart met lijnvoering
 - grafiek met nodes en edges gefixed. Nodes zitten nu op de goede posities
 - redirected grafiek-code naar classes/visualisation/graph.py
+
