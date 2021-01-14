@@ -8,7 +8,6 @@ import networkx as nx
 def get_map(data):
     
     P = nx.Graph() 
-
     pos = data.get_cor()
     P.add_nodes_from(pos)
     
@@ -22,7 +21,7 @@ def get_map(data):
             e= tuple(e)
             edges.append(e)
     P.add_edges_from(edges)
-
+    
     fig,ax = plt.subplots(1, figsize = (15,12))
     nx.draw(P, pos,with_labels = True)
     plt.show()

@@ -28,7 +28,7 @@ class Random():
         while True:
             if sum(time) > time_max:
                 break
-
+            print(traject)
             # loop += 1
             #pakt alle connecties van get_rdm_station
             get_connections = self.connection[get_rdm_station]
@@ -39,18 +39,22 @@ class Random():
 
             # pakt random connectie ervan
             get_rdm_connection = random.choice(list(get_connections))
-
+           
             # als het in het traject al zit EN het maar 1 richting op kan
-            if get_rdm_connection in traject and len(get_connections) == 1:
+            if get_rdm_connection in traject and len(get_connections) == 0:
                 break
             
             # pak de tijd ervan
             get_time = self.connection[get_rdm_station][get_rdm_connection]
             time.append(get_time)
 
+            # {'Alkmaar': {'Hoorn': 24, 'Den Helder': 36, 'Castricum': 9}
             del self.connection[get_rdm_station][get_rdm_connection]
+            # {'Alkmaar': { 'Den Helder': 36, 'Castricum': 9}
+
+            #'Hoorn': {'Alkmaar': 24, 'Zaandam': 26}
             del self.connection[get_rdm_connection][get_rdm_station]
-            
+            #'Hoorn': { 'Zaandam': 26}
             
             # nieuw begin station
             get_rdm_station = get_rdm_connection
@@ -73,11 +77,9 @@ class Random():
 
     def test(self):
         l =[]
-        for i in range(50):
+        for i in range(2):
             traject = Random.get_traject(self)
             
             l.append(traject)
             # for i in l:
-
-        k = l[1]
-        return  k
+        return  l
