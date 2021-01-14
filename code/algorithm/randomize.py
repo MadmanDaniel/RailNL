@@ -28,7 +28,7 @@ class Random():
         while True:
             if sum(time) > time_max:
                 break
-            print(traject)
+            # print(traject)
             # loop += 1
             #pakt alle connecties van get_rdm_station
             get_connections = self.connection[get_rdm_station]
@@ -36,7 +36,7 @@ class Random():
             # als alle connections gedelete zijn moet stoppen met loopen
             if get_connections == {}:
                 break
-
+            
             # pakt random connectie ervan
             get_rdm_connection = random.choice(list(get_connections))
            
@@ -55,16 +55,23 @@ class Random():
             #'Hoorn': {'Alkmaar': 24, 'Zaandam': 26}
             del self.connection[get_rdm_connection][get_rdm_station]
             #'Hoorn': { 'Zaandam': 26}
+
             
             # nieuw begin station
             get_rdm_station = get_rdm_connection
+            if len(self.connection[get_rdm_connection]) ==0:
+                del self.connection[get_rdm_connection] 
+            if len(self.connection[get_rdm_station]) ==0:
+                del self.connection[get_rdm_station] 
             traject.append(get_rdm_connection)
+            
 
         # vb: als 110 is lager dan 120
         # Maar loop loopt nog door. laatste element moet daarom verwijderd worden.
         if sum(time) > time_max:
             time.pop()
             traject.pop()
+
 
         return traject, sum(time)
 
@@ -75,11 +82,46 @@ class Random():
     def get_random_station(self):
         return random.choice(list(self.connection.items()))
 
-    def test(self):
-        l =[]
-        for i in range(2):
-            traject = Random.get_traject(self)
+    # def test(self):
+    #     l =[]
+    #     for i in range(7): 
+    #         traject = Random.get_traject(self)
+    #         l.append(traject)
+    #     # x = tuple
+    #     # lijst l   
+    #     for x in l:
+    #         for y in range(len(x)):
+    #             if x[y] == 0:
+    #                 print(x[y])
+                
             
-            l.append(traject)
-            # for i in l:
-        return  l
+            # if x[1] == 0:
+            #     del l[x]
+            # else: 
+            #     break
+
+            # for y in l[x]:
+            #     if y == 0:
+            #         print(l[x-1])
+        # return l
+    #(['Den Helder'], 0)
+            
+        
+    def test2(self):
+        l =[]
+        i = 0
+        while True:
+            traject = Random.get_traject(self)
+            i += 1
+            if i == 7:
+                break
+
+            if self.connection.values() ==0:
+                break
+            
+            print(traject)
+
+        
+            
+        # l[is 1 traject]
+        # l[][alleen number]
