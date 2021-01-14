@@ -68,7 +68,13 @@ class Load():
             y_cor.append(y)
         return y_cor
 
-    
+    def get_cor(self):
+        cor = {}
+        for key, value in self.stations.items():
+            cor[key] = (value.xcoordination, value.ycoordination)
+            
+        return cor
+
 
         
                 

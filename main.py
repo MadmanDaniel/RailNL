@@ -3,6 +3,7 @@
 # (dus visualisatie van de datapunten) -> is van extension Jupyter
 from code.classes import station, load
 from code.algorithm import randomize
+from code.visualisation.graph import get_map
 
 import csv
 #import matplotlib.pyplot as plt
@@ -10,29 +11,26 @@ import csv
 #import numpy as np
 
 if __name__ == "__main__":
-
-    data = load.Load("data/opdracht1/StationsHolland.csv", "data/opdracht1/ConnectiesHolland.csv" )
+    stations_file = "data/opdracht1/StationsHolland.csv"
+    connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+    data = load.Load(stations_file, connecties_file)
 
     random1 = randomize.Random(data)
-    print(random1.get_traject())
-    # print(random1.test())
     
-
-    # # all stations
+    print(random1.get_traject())
+    print(random1.test())
+    
+    # print("------------------------------------------")
+    # # # all stations
     # print(data.get_station())
-    # print("------")
+    # print("------------------------------------------")
 
-    # all connections
+    # # all connections
     # print(data.connection)
-    # print("------")
+    # print("------------------------------------------")
 
     #---------------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    # # eerst alle stations uitbeelden
-    
-    # plt.scatter(x_cor, y_cor)
-
-    # plt.grid()
-    # plt.show()
+    graph = get_map(data)
     #----------------------------------
     
