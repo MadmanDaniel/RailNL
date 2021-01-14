@@ -11,7 +11,6 @@ class Load():
         self.load_station(station_file)
         self.load_connection(connection_file)
         
-
     def load_station(self, station_file):
         with open(station_file, 'r') as infile:
             reader = csv.reader(infile)
@@ -44,29 +43,11 @@ class Load():
                 self.connection[begin_station.station_name][end_station.station_name] = minutes
                 self.connection[end_station.station_name][begin_station.station_name] = minutes
 
-                
-   
     def get_station(self):
         return self.stations
 
     def get_con(self):
         return self.connection
-
-    def get_xcor(self):
-        # ik denk dat een loop niet effectief is om de x en y waardes uit te lezen voor een grafiek.
-        # Later moeten we dit misschien nog aanpassen 
-        x_cor = []
-        for x in self.stations.values():
-            x = x.xcoordination
-            x_cor.append(x)
-        return x_cor
-
-    def get_ycor(self):
-        y_cor = []
-        for y in self.stations.values():
-            y = y.ycoordination
-            y_cor.append(y)
-        return y_cor
 
     def get_cor(self):
         cor = {}

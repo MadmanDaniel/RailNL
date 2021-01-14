@@ -16,8 +16,8 @@ if __name__ == "__main__":
     data = load.Load(stations_file, connecties_file)
 
     random1 = randomize.Random(data)
-    
-    print(random1.get_traject())
+    # print(random1.get_traject())
+    # print(random1.lijnvoering())
     print(random1.test())
     
     # print("------------------------------------------")
@@ -31,6 +31,6 @@ if __name__ == "__main__":
 
     #---------------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    graph = get_map(data)
+    # graph = get_map(data)
     #----------------------------------
     
