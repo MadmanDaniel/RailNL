@@ -10,3 +10,8 @@
 - Verder werken met grafiek. 
 - Code van grafiek verplaatsen naar classes/visualisation/graph.py
 - UML verbeterd.
+
+### 13/01/2021
+- Samen gecodeerd voor de Random algoritme
+- Random algoritme, bijna afgerond. Donderdag af en wordt gepushed wanneer het af is
+
