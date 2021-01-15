@@ -76,7 +76,6 @@ class Random():
             
             # nieuw begin station
             get_rdm_station = get_rdm_connection
-            
             traject.append(get_rdm_connection)
             # self.aantal_connections =  self.aantal_connections +1
         
@@ -91,12 +90,12 @@ class Random():
         T =[]
         while True:
             traject = Random.get_traject(self)
-            i += 1
-            if i == 7:
-                break
+            # i += 1
+            # if i == 7:
+            #     break
 
-            if self.connection.values() ==0:
-                break
+            # if self.connection.values() ==0:
+            #     break
             
             if traject[1] == 0:
                 continue
