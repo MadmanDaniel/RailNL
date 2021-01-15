@@ -124,7 +124,7 @@ class Random():
         # print(len(b))
 
         all_trajects = all_possible_trajects - len(b)
-        
+        print(lijnvoering)
         a = []
         for x in lijnvoering[0]:
             a.append(x[1])
