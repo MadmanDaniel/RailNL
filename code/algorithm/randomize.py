@@ -52,7 +52,7 @@ class Random():
             # als het in het traject al zit EN het maar 1 richting op kan
             if get_rdm_connection in traject and get_connections == {} :
                 break
-            
+
             # pak de tijd ervan
             get_time = self.connection[get_rdm_station][get_rdm_connection]
             
@@ -90,27 +90,16 @@ class Random():
         T =[]
         while True:
             traject = Random.get_traject(self)
-            #print(self.connection)
-            # i += 1
-            # if i == 7:
-            #     break
-
-            # if self.connection.values() ==0:
-            #     break
-            
-            #Neemt ie niet mee ['Alkmaar', 0]
+                
             if traject[1] == 0:
                 continue
             T.append(traject)
-            # 1 van deze voorwaarde om te stoppen
-            # if len(T) == 7 and len(p) == 22:
-            #     break
 
             p = []
             for i in self.connection.values():
                 if i == {}:
                     p.append(i)
-            # als er geen connecties meer zijn
+            #pseudo voor als er geen connecties meer zijn
             if len(p) == 22:
                 break
             
@@ -118,9 +107,9 @@ class Random():
         return  T, len(T), len(p)
 
     def get_solution(self):
-        # alle stations
+
         total_stations = len(self.station)
-        #alle connecties van Alkmaar bijvoorbeeld
+
         j=[]
         for i in self.connection.values():
             for v in i:
@@ -131,7 +120,6 @@ class Random():
         
         lijnvoering = Random.make_lijnvoering(self)
 
-        #Connecties die nog over zijn
         b = []
         for k in self.connection.values():
             for v in k:
