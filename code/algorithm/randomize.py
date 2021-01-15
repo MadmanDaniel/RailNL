@@ -44,7 +44,7 @@ class Random():
             if get_connections == {}:
                 
                 break
-
+            
             # pakt random connectie ervan
             get_rdm_connection = random.choice(list(get_connections))
             # print(get_rdm_connection)
@@ -62,7 +62,11 @@ class Random():
                 break
             
 
+            # {'Alkmaar': {'Hoorn': 24, 'Den Helder': 36, 'Castricum': 9}
             del self.connection[get_rdm_station][get_rdm_connection]
+            # {'Alkmaar': { 'Den Helder': 36, 'Castricum': 9}
+
+            #'Hoorn': {'Alkmaar': 24, 'Zaandam': 26}
             del self.connection[get_rdm_connection][get_rdm_station]
 
             # if len(self.connection[get_rdm_station]) == 0:
@@ -87,6 +91,12 @@ class Random():
         T =[]
         while True:
             traject = Random.get_traject(self)
+            i += 1
+            if i == 7:
+                break
+
+            if self.connection.values() ==0:
+                break
             
             if traject[1] == 0:
                 continue

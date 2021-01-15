@@ -39,7 +39,7 @@ class Load():
                     self.connection[begin_station.station_name] = {}
                 if end_station.station_name not in self.connection:
                     self.connection[end_station.station_name] = {}
-                
+               
                 self.connection[begin_station.station_name][end_station.station_name] = minutes
                 self.connection[end_station.station_name][begin_station.station_name] = minutes
 

@@ -8,7 +8,6 @@ import networkx as nx
 def get_map(data):
     
     P = nx.Graph() 
-
     pos = data.get_cor()
     P.add_nodes_from(pos)
     
