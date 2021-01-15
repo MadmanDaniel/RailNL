@@ -103,7 +103,7 @@ class Random():
                 continue
             T.append(traject)
             # 1 van deze voorwaarde om te stoppen
-            # if len(T) == 7:
+            # if len(T) == 7 and len(p) == 22:
             #     break
 
             p = []
