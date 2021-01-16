@@ -17,10 +17,8 @@ if __name__ == "__main__":
 
     random1 = randomize.Random(data)
     
-    
-    
     # print(random1.make_lijnvoering())
-    print(random1.get_solution())
+    # print(random1.get_solution())
     
     # print("------------------------------------------")
     # # # all stations

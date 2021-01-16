@@ -52,7 +52,7 @@ class Load():
     def get_cor(self):
         cor = {}
         for key, value in self.stations.items():
-            cor[key] = (value.xcoordination, value.ycoordination)
+            cor[key] = (value.ycoordination, value.xcoordination)
             
         return cor
 
