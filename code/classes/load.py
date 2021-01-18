@@ -29,7 +29,7 @@ class Load():
             for line in reader:
                 begin_station = self.stations[line[0]]
                 end_station = self.stations[line[1]]
-                minutes = int(line[2])
+                minutes = float(line[2])
                 
                 # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
                 # https://www.programiz.com/python-programming/nested-dictionary

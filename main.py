@@ -11,14 +11,24 @@ import csv
 #import numpy as np
 
 if __name__ == "__main__":
-    stations_file = "data/opdracht1/StationsHolland.csv"
-    connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+
+  
+
+   
+    # stations_file = "data/opdracht1/StationsHolland.csv"
+    # connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+
+    stations_file = "data/opdracht2/StationsNationaal.csv"
+    connecties_file = "data/opdracht2/ConnectiesNationaal.csv"
+
+
+    
     data = load.Load(stations_file, connecties_file)
 
     random1 = randomize.Random(data)
     
-    # print(random1.make_lijnvoering())
-    # print(random1.get_solution())
+    # print(random1.get_traject())
+    print(random1.make_lijnvoering())
     
     # print("------------------------------------------")
     # # # all stations
