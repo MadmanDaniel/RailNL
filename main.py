@@ -15,11 +15,11 @@ if __name__ == "__main__":
   
 
    
-    # stations_file = "data/opdracht1/StationsHolland.csv"
-    # connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+    stations_file = "data/opdracht1/StationsHolland.csv"
+    connecties_file = "data/opdracht1/ConnectiesHolland.csv"
 
-    stations_file = "data/opdracht2/StationsNationaal.csv"
-    connecties_file = "data/opdracht2/ConnectiesNationaal.csv"
+    # stations_file = "data/opdracht2/StationsNationaal.csv"
+    # connecties_file = "data/opdracht2/ConnectiesNationaal.csv"
 
 
     

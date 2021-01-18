@@ -88,7 +88,7 @@ class Random():
             self.trajectconnection = copy.deepcopy(self.connection)
             
             #   max aantal trajecten
-            if len(T) > 20:
+            if len(T) > 7:
                 continue
             break
         # T =TRAJECTEN
