@@ -20,6 +20,7 @@ if __name__ == "__main__":
 
     data = load.Load(stations_file, connecties_file)
 
+
     random1 = randomize.Random(data)
     # print(random1.make_lijnvoering())
     # print(random1.get_solution())
@@ -28,6 +29,7 @@ if __name__ == "__main__":
     # print(greedy1.test())
     print(greedy1.make_lijnvoering())
     
+
     
     # print("------------------------------------------")
     # # # all stations
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     # print("------------------------------------------")
 
     # # all connections
-    # print(data.get_con())
+    #print(data.get_con())
     # print("------------------------------------------")
 
     #---------------------------------
