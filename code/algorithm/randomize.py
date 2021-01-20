@@ -8,15 +8,8 @@ class Random():
     def __init__(self, data):
         # data from load.py
         self.connection = data.connection
-        self.station = data.stations
-
-        # self.traject = []
-        self.p = []
-        self.T = []
-        self.Min = []
-        self.aantal_connections = 0
-
-        self.trajectconnection = copy.deepcopy(self.connection)
+        self.trajectconnection = copy.deepcopy(data.connection)
+        # self.station = data.stations
 
     def get_traject(self):
         """
@@ -33,10 +26,8 @@ class Random():
         get_rdm_station = random.choice(list(self.trajectconnection))
         traject.append(get_rdm_station)
 
-        while True:
-            if sum(time) > time_max:
-                break
-
+        while sum(time) < time_max:
+            
             get_connections = self.trajectconnection[get_rdm_station]
 
             if get_connections == {}:
@@ -65,11 +56,12 @@ class Random():
     
 
     def make_lijnvoering(self): 
-        
+        loop = 0
         while True:
             
             T =[]
             while True:
+                loop +=1
                 traject = Random.get_traject(self)
                     
                 if traject[1] == 0:
@@ -93,21 +85,16 @@ class Random():
             break
         # T =TRAJECTEN
         # len(T) = AANTAL TRAJECTEN
-        
         # len(p) = AANTAL CONNECTIES OVER -> 22 =0
         all_time = []
         for i in T:
             all_time.append((i[1]))
         all_time = sum(all_time)
+        print(f"aantal loops: {loop}")
         return  T, len(T), len(p), all_time
 
 
-
     def get_solution(self):
-
-
-        # total_stations = len(self.station)
-        # p = lijnvoering[2]/total_stations
 
         ans = []
         lijnvoering_all = [] 
@@ -119,8 +106,6 @@ class Random():
             Min = lijnvoering[3]
             q = p*10000 - (T*100 + Min)
             ans.append(float(q))
-
-        
 
         #https://www.geeksforgeeks.org/writing-csv-files-in-python/
         rows = [
@@ -138,15 +123,3 @@ class Random():
         return ans
     
 
-        
-
-            
-            
-               
-
-        
-    
-
-            
-        
-        
