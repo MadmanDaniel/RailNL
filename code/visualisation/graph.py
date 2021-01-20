@@ -22,9 +22,10 @@ def get_map(data):
             edges.append(e)
     P.add_edges_from(edges)
     
-    fig,ax = plt.subplots(1, figsize = (15,12))
+    fig,ax = plt.subplots(1, figsize = (15,15))
     nx.draw(P, pos,with_labels = True)
     plt.show()
+    plt.savefig('data/quality/ConnectionHolland.png')
     # return P.edges()
     
     # print(data.get_cor())
