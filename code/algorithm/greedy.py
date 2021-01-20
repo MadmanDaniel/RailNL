@@ -1,7 +1,8 @@
 import random
 from .randomize import Random
 import copy
-
+import csv
+import pandas as pd
 class Greedy():
     """Zoekt het steeds de kortste afstand met als beginstation een random"""
 
@@ -46,11 +47,11 @@ class Greedy():
         return traject, sum(time)
 
     def test(self):
-        x=[]
-        for i in range(5):
-            x.append(Greedy.run(self))
-        # print(self.trajectconnection)
-        return x
+        # x=[]
+        # for i in range(5):
+        #     x.append(Greedy.run(self))
+        # # print(self.trajectconnection)
+        return self.connection
 
     def make_lijnvoering(self): 
     
@@ -62,6 +63,7 @@ class Greedy():
                 loop += 1
                 # print(T)
                 traject = Greedy.run(self)
+                # print(traject)
                 
                 if traject[1] == 0:
                     self.begin_station = random.choice(list(self.trajectconnection))
@@ -100,11 +102,31 @@ class Greedy():
         #getting maximum distance of the connecties
         get_all_connections = self.trajectconnection[self.begin_station]
 
-        sort = sorted(get_all_connections.items())
+        sort = sorted(get_all_connections.items(), key=lambda item: item[1])
 
         min_value = sort[0]
-
+        
         return min_value
 
-        
+    def get_solution(self):
+       
+        ans = []
+        # lijnvoering_all = [] 
+        for i in range(1000):
+            lijnvoering = Greedy.make_lijnvoering(self)
+            # lijnvoering_all.append(lijnvoering[0])
+            T = lijnvoering[1]
+            p = 1
+            Min = lijnvoering[3]
+            q = p*10000 - (T*100 + Min)
+            ans.append(float(q))
 
+        #https://www.geeksforgeeks.org/writing-csv-files-in-python/
+        data = {'q': ans
+        }
+        filename = "data/quality/greedy_output.csv"
+
+        df = pd.DataFrame(data, columns = ['q'])
+        df.to_csv(filename)
+
+        return q

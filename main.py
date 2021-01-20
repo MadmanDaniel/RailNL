@@ -4,6 +4,7 @@
 from code.classes import station, load
 from code.algorithm import randomize, greedy
 from code.visualisation.graph import get_map
+from data.quality.hist import *
 
 import csv
 #import matplotlib.pyplot as plt
@@ -22,12 +23,12 @@ if __name__ == "__main__":
 
 
     random1 = randomize.Random(data)
-    # print(random1.make_lijnvoering())
+    print(random1.get_solution())
     # print(random1.get_solution())
 
     greedy1 = greedy.Greedy(data)
-    # print(greedy1.test())
-    print(greedy1.make_lijnvoering())
+    print(greedy1.get_solution())
+
     
 
     
@@ -42,7 +43,8 @@ if __name__ == "__main__":
 
     #---------------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    # dist = get_dist("data/quality/random_output.csv")
+    dist = get_greedy_dist()
+    # dist = get_random_dist()
     # graph = get_map(data)
     #----------------------------------
     

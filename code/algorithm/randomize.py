@@ -2,6 +2,7 @@
 import random
 import copy
 import csv
+import pandas as pd
 
 class Random():
 
@@ -19,7 +20,8 @@ class Random():
         """
         
         traject = []
-        time_max = int(120)
+        # time_max = int(120)
+        time_max = float(120)
         time = []
         # loop = 0
         # self.trajectconnection = copy.deepcopy(self.connection)
@@ -67,15 +69,22 @@ class Random():
                 if traject[1] == 0:
                     continue
                 T.append(traject)
+                # print(len(T))
 
                 # = wanneer alle connecties bereden zijn
                 p = []
                 for i in self.trajectconnection.values():
                     if i == {}:
                         p.append(i)
+                # if len(p) == 61:
+                #     break
                 if len(p) == 22:
                     break
 
+                
+                # if len(T) == 20:
+                #     break
+            # print(self.trajectconnection)
             #Herstellen van onze data als een volledige traject gemaakt is zodat we opnieuw kunnen loopen
             self.trajectconnection = copy.deepcopy(self.connection)
             
@@ -91,6 +100,7 @@ class Random():
             all_time.append((i[1]))
         all_time = sum(all_time)
         print(f"aantal loops: {loop}")
+       
         return  T, len(T), len(p), all_time
 
 
@@ -98,7 +108,7 @@ class Random():
 
         ans = []
         lijnvoering_all = [] 
-        for i in range(100):
+        for i in range(1000):
             lijnvoering = Random.make_lijnvoering(self)
             lijnvoering_all.append(lijnvoering[0])
             T = lijnvoering[1]
@@ -108,73 +118,14 @@ class Random():
             ans.append(float(q))
 
         #https://www.geeksforgeeks.org/writing-csv-files-in-python/
-        rows = [
-            ['q', ans]
-
-        ]
+        
+        data = {'q': ans
+        }
         filename = "data/quality/random_output.csv"
 
-        with open(filename, 'w') as infile:  
-            # creating a csv writer object  
-            csvwriter = csv.writer(infile) 
-                
-            # writing the data rows  
-            csvwriter.writerows(rows) 
-<<<<<<< HEAD
+        df = pd.DataFrame(data, columns = ['q'])
+        df.to_csv(filename)
 
         return q
 
-
-class Greedy():
-    " Random een startstation kiezen en vanuit daar de dichtbijzijnde station aan linken"
-    def __init__(self, data):
-        # De data van Load.py
-        self.connection = copy.deepcopy(data.connection)
-        self.station = copy.deepcopy(data.stations)
-
-        # self.traject = []
-        self.p = []
-        self.T = []
-        self.Min = []
-        self.aantal_connections = 0
-    
-    def get_traject(self):
-        """
-        Maak een lijnvoering voor Noord- en Zuid-Holland 
-        met maximaal zeven trajecten binnen een tijdsframe van twee uur, 
-        waarbij alle verbindingen bereden worden, aan de hand van een Greedy Algoritme.
-        """
-        optie = []
-        traject = []
-        time_max = int(120)
-        tijd = []
-        # loop = 0
-        start = random.choice(list(self.connection))
-        begin = start
-        optie.append(begin)
-        while sum(tijd) < time_max:
-            verbinding = self.connection[begin]
-            koppel = (min(verbinding, key=verbinding.get))
-            optie.append(koppel)
-            t = verbinding[koppel]
-            tijd.append(t)
-            del self.connection[begin][koppel]
-            del self.connection[koppel][begin]
-            if sum(tijd) > time_max:
-                traject.append(optie)
-                break
-            begin = koppel
-        # for i in verbinding:
-        #     station = i
-        #     tijd = verbinding[station]
-
-        return traject, sum(tijd)
-        
-
-
-    
-=======
-        return ans
->>>>>>> 4a3047e268630e5a1e80e81b1d8d57cd2a8e5a26
-    
 
