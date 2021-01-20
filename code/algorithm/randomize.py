@@ -167,6 +167,55 @@ class Random():
             csvwriter.writerows(rows) 
 
         return q
+
+
+class Greedy():
+    " Random een startstation kiezen en vanuit daar de dichtbijzijnde station aan linken"
+    def __init__(self, data):
+        # De data van Load.py
+        self.connection = copy.deepcopy(data.connection)
+        self.station = copy.deepcopy(data.stations)
+
+        # self.traject = []
+        self.p = []
+        self.T = []
+        self.Min = []
+        self.aantal_connections = 0
+    
+    def get_traject(self):
+        """
+        Maak een lijnvoering voor Noord- en Zuid-Holland 
+        met maximaal zeven trajecten binnen een tijdsframe van twee uur, 
+        waarbij alle verbindingen bereden worden, aan de hand van een Greedy Algoritme.
+        """
+        optie = []
+        traject = []
+        time_max = int(120)
+        tijd = []
+        # loop = 0
+        start = random.choice(list(self.connection))
+        begin = start
+        optie.append(begin)
+        while sum(tijd) < time_max:
+            verbinding = self.connection[begin]
+            koppel = (min(verbinding, key=verbinding.get))
+            optie.append(koppel)
+            t = verbinding[koppel]
+            tijd.append(t)
+            del self.connection[begin][koppel]
+            del self.connection[koppel][begin]
+            if sum(tijd) > time_max:
+                traject.append(optie)
+                break
+            begin = koppel
+        # for i in verbinding:
+        #     station = i
+        #     tijd = verbinding[station]
+
+        return traject, sum(tijd)
+        
+
+
     
     
 

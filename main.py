@@ -2,7 +2,7 @@
 # Code hierboven is alleen nodig voor Matplotlib 
 # (dus visualisatie van de datapunten) -> is van extension Jupyter
 from code.classes import station, load
-from code.algorithm import randomize
+from code.algorithm import randomize, greedy
 from code.visualisation.graph import get_map
 
 import csv
@@ -15,12 +15,14 @@ if __name__ == "__main__":
     connecties_file = "data/opdracht1/ConnectiesHolland.csv"
     data = load.Load(stations_file, connecties_file)
 
-    random1 = randomize.Random(data)
+    #random1 = randomize.Random(data)
+    greedy1= greedy.Greedy(data)
     
     
     
     # print(random1.make_lijnvoering())
-    print(random1.get_solution())
+    #print(greedy1.get_traject())
+    print(greedy1.make_lijnvoering())
     
     # print("------------------------------------------")
     # # # all stations
@@ -28,7 +30,7 @@ if __name__ == "__main__":
     # print("------------------------------------------")
 
     # # all connections
-    # print(data.get_con())
+    #print(data.get_con())
     # print("------------------------------------------")
 
     #---------------------------------
