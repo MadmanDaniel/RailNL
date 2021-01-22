@@ -6,118 +6,113 @@ import pandas as pd
 class Greedy():
     """Zoekt het steeds de kortste afstand met als beginstation een random"""
 
-    def __init__(self, data):
+    def __init__(self, data, max_time, max_traject):
         self.connection = data.connection
         self.trajectconnection = copy.deepcopy(self.connection)
 
-        self.begin_station = random.choice(list(self.trajectconnection))
+        self.all_con = data.all_con()
+        self.functions = data
 
-    def run(self):
+        self.max_time = max_time
+        self.max_traject = max_traject
+
+        
+
+    def get_traject(self):
+        """
+        Maak een lijnvoering voor Noord- en Zuid-Holland 
+        met maximaal zeven trajecten binnen een tijdsframe van twee uur, 
+        waarbij alle verbindingen bereden worden.
+        """
         traject = []
-        time_max = int(120)
+        time_max = self.max_time
         time = []
-        # loop = 0
-        # self.trajectconnection = copy.deepcopy(self.connection)
-        # self.get_rdm_station = random.choice(list(self.trajectconnection))
+
+        loops = 0
+
+        self.begin_station = random.choice(list(self.trajectconnection))
         traject.append(self.begin_station)
 
         while sum(time) < time_max:
-            if self.trajectconnection[self.begin_station] == {}:
-                break
 
-            new_station = Greedy.get_min(self)
- 
-            traject.append(new_station[0])
-            time.append(new_station[1])
+            loops += 1
+
+            get_con = self.trajectconnection[self.begin_station]
+            next_station = self.functions.get_shortest_des(get_con) 
+
+            get_time = next_station[1]
+            next_station = next_station[0]
+
+            time.append(get_time)
             if sum(time) > time_max:
                 time.pop()
-                traject.pop()
                 break
 
-            del self.trajectconnection[self.begin_station][new_station[0]]
-            del self.trajectconnection[new_station[0]][self.begin_station]
+            del self.trajectconnection[self.begin_station][next_station]
+            del self.trajectconnection[next_station][self.begin_station]
 
+          
 
-            self.begin_station = new_station[0]
-            # if self.trajectconnection[self.begin_station] == {}:
-            #     del self.trajectconnection[self.begin_station]
-            #     self.begin_station = random.choice(list(self.trajectconnection))
-            #     print("OK")
+            if self.trajectconnection[self.begin_station] == {}:
+                del self.trajectconnection[self.begin_station]
 
-        return traject, sum(time)
+            self.begin_station = next_station
+            traject.append(next_station)
+
+            if self.trajectconnection[next_station] == {}:
+                del self.trajectconnection[next_station]
+                break
+
+        return traject, sum(time),loops
 
     def test(self):
-        # x=[]
-        # for i in range(5):
-        #     x.append(Greedy.run(self))
-        # # print(self.trajectconnection)
-        return self.connection
+        x = []
+        for i in range(7):
+            print(x)
+            x.append(Greedy.get_traject(self))
+        return x
+
 
     def make_lijnvoering(self): 
     
-        loop = 0
+        loops = 0
         while True:
-            
-            T =[]
-            while True:
-                loop += 1
-                # print(T)
-                traject = Greedy.run(self)
-                # print(traject)
-                
-                if traject[1] == 0:
-                    self.begin_station = random.choice(list(self.trajectconnection))
-                    continue
-                T.append(traject)
-            
 
-                # = wanneer alle connecties bereden zijn
-                p = []
-                for i in self.trajectconnection.values():
-                    
-                    if i == {}:
-                        p.append(i)
-                if len(p) == 22:
-                    break
-                    
-            #Herstellen van onze data als een volledige traject gemaakt is zodat we opnieuw kunnen loopen
+            all_traject =[]
+            time = 0
+            while self.trajectconnection != {}:
+                
+                get_traject = Greedy.get_traject(self)
+                all_traject.append(get_traject[0])
+                time += get_traject[1]
+                loops += get_traject[2]
             self.trajectconnection = copy.deepcopy(self.connection)
-            
-            #   max aantal trajecten
-            if len(T) > 7:
+
+            if len(all_traject) > self.max_traject:
                 continue
             break
-        all_time = []
-        for i in T:
-            all_time.append((i[1]))
-        all_time = sum(all_time)
 
-        print(f"aantal loops: {loop}")
-        print(f"aantal trajecten: {len(T)}")
-        print(f"aantal min samen: {all_time}")
+        used_con = self.functions.get_remain_con(self.trajectconnection.items())
+            
+        # print(f"aantal loops: {loops}")
 
-        return  T, len(T), len(p), all_time
+        return len(all_traject), used_con, time, loops
 
-    def get_min(self):
-        #getting maximum distance of the connecties
-        get_all_connections = self.trajectconnection[self.begin_station]
 
-        sort = sorted(get_all_connections.items(), key=lambda item: item[1])
-
-        min_value = sort[0]
-        
-        return min_value
 
     def get_solution(self):
-       
+        total_loops = 0
         ans = []
-        # lijnvoering_all = [] 
-        for i in range(1000):
+        for i in range(100):
+            
             lijnvoering = Greedy.make_lijnvoering(self)
-            # lijnvoering_all.append(lijnvoering[0])
-            T = lijnvoering[1]
-            p = 1
-            Min = lijnvoering[3]
+            total_loops += lijnvoering[3]
+
+            T = lijnvoering[0]
+            Min = lijnvoering[2]
+            used_con = lijnvoering[1]
+            p = used_con/self.all_con
+
             q = p*10000 - (T*100 + Min)
             ans.append(float(q))
 
@@ -129,4 +124,5 @@ class Greedy():
         df = pd.DataFrame(data, columns = ['q'])
         df.to_csv(filename)
 
+        print(f"loops greedy: {total_loops}")
         return q

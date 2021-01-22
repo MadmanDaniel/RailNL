@@ -8,6 +8,7 @@ Deze case gaat over het maken van de meest optimale lijnvoering. Meer specifiek:
 - matplotlib
 - random
 - csv
+- pandas
 
 ## Auteurs
 Elvin Li, Daniel Djuly, Hatim Hashi

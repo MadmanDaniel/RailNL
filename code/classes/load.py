@@ -43,11 +43,27 @@ class Load():
                 self.connection[begin_station.station_name][end_station.station_name] = minutes
                 self.connection[end_station.station_name][begin_station.station_name] = minutes
 
-    def get_station(self):
-        return self.stations
+    def all_con(self):
+        x = []
+        for key,value in self.connection.items():
+            x += value
+        return (len(x)/2)
 
-    def get_con(self):
-        return self.connection
+    def get_remain_con(self, remain_con):
+        used_con = []
+        for key, value in remain_con:
+            used_con += value
+        used_con = (len(used_con)/2)
+
+        return used_con
+
+    def get_shortest_des(self, get_con):
+        sort = sorted(get_con.items(), key=lambda item: item[1])
+
+        min_value = sort[0]
+        return min_value
+
+
 
     def get_cor(self):
         cor = {}

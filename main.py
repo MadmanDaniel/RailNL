@@ -11,40 +11,53 @@ import csv
 #import networkx as nx
 #import numpy as np
 
+import sys
+
 if __name__ == "__main__":
 
-    stations_file = "data/opdracht1/StationsHolland.csv"
-    connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+    print("Holland (1) or Nationaal (2) ?")
+    chosen_file = input("I choose: ")
 
-    # stations_file = "data/opdracht2/StationsNationaal.csv"
-    # connecties_file = "data/opdracht2/ConnectiesNationaal.csv"
+    if chosen_file == "1":
+        print("Loading....")
+        stations_file = "data/opdracht1/StationsHolland.csv"
+        connecties_file = "data/opdracht1/ConnectiesHolland.csv"
+        max_time = int(120)
+        max_traject = int(7)
+    elif chosen_file == "2":
+        print("Loading....")
+        stations_file = "data/opdracht2/StationsNationaal.csv"
+        connecties_file = "data/opdracht2/ConnectiesNationaal.csv"
+        max_time = int(180)
+        max_traject = int(20)
+    else:
+        print("Error, pick a valid number")
+        sys.exit()
 
     data = load.Load(stations_file, connecties_file)
 
-
-    random1 = randomize.Random(data)
+    # ----------------------------- RANDOM -----------------------
+    random1 = randomize.Random(data, max_time, max_traject)
+    # print(random1.get_traject())
+    # print(random1.make_lijnvoering())
     print(random1.get_solution())
-    # print(random1.get_solution())
+    # ------------------------------------------------------------
 
-    greedy1 = greedy.Greedy(data)
+
+    # ---------------------------- GREEDY ------------------------
+    greedy1 = greedy.Greedy(data, max_time, max_traject)
     print(greedy1.get_solution())
+    # ------------------------------------------------------------
 
-    
+    # print(data.all_con())
 
-    
-    # print("------------------------------------------")
-    # # # all stations
-    # print(data.get_station())
-    # print("------------------------------------------")
 
-    # # all connections
-    #print(data.get_con())
-    # print("------------------------------------------")
 
-    #---------------------------------
+    # ---------------------------- GRAPH -------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    dist = get_greedy_dist()
+    # dist = get_greedy_dist()
     # dist = get_random_dist()
+    dist = get_all_dist()
     # graph = get_map(data)
-    #----------------------------------
+    # ------------------------------------------------------------
     
