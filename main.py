@@ -40,13 +40,13 @@ if __name__ == "__main__":
     random1 = randomize.Random(data, max_time, max_traject)
     # print(random1.get_traject())
     # print(random1.make_lijnvoering())
-    # print(random1.get_solution())
+    # random1.get_solution()
     # ------------------------------------------------------------
 
 
     # ---------------------------- GREEDY ------------------------
     # greedy1 = greedy.Greedy(data, max_time, max_traject)
-    # print(greedy1.get_solution())
+    # greedy1.get_solution()
     # ------------------------------------------------------------
 
     # print(data.all_con())

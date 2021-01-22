@@ -76,6 +76,10 @@ class Random():
                 time += get_traject[1]
                 loops += get_traject[2]
 
+                # used_con = self.functions.get_remain_con(self.trajectconnection.items())
+                # if used_con == 18:
+                #     break
+
             self.trajectconnection = copy.deepcopy(self.connection)
             if len(all_traject) > self.max_traject:
                 continue
@@ -113,7 +117,7 @@ class Random():
         df = pd.DataFrame(data, columns = ['q'])
         df.to_csv(filename)
 
-        print(f"loops random: {total_loops}")
-        return q
+        # print(f"loops random: {total_loops}")
+        return print(f"loops randomize: {total_loops}")
 
 

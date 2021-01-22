@@ -86,6 +86,10 @@ class Greedy():
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
                 loops += get_traject[2]
+                # used_con = self.functions.get_remain_con(self.trajectconnection.items())
+                # if used_con == 18:
+                #     break
+
             self.trajectconnection = copy.deepcopy(self.connection)
 
             if len(all_traject) > self.max_traject:
@@ -124,5 +128,5 @@ class Greedy():
         df = pd.DataFrame(data, columns = ['q'])
         df.to_csv(filename)
 
-        print(f"loops greedy: {total_loops}")
-        return q
+        
+        return print(f"loops greedy: {total_loops}")
