@@ -86,7 +86,7 @@ class Random():
 
         # print(f"aantal loops: {loops}")
 
-        return len(all_traject), used_con, time, loops
+        return len(all_traject), used_con, time, loops, all_traject
 
 
     def get_solution(self):

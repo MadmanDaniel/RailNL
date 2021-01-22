@@ -43,6 +43,9 @@ class Load():
                 self.connection[begin_station.station_name][end_station.station_name] = minutes
                 self.connection[end_station.station_name][begin_station.station_name] = minutes
 
+    def get_con(self):
+        return self.connection
+
     def all_con(self):
         x = []
         for key,value in self.connection.items():

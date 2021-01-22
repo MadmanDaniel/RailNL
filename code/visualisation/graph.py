@@ -1,11 +1,13 @@
-#%% 
 # Code hierboven is alleen nodig voor Matplotlib 
 # (dus visualisatie van de datapunten) -> is van extension Jupyter
 # from code.classes import station, load
 import matplotlib.pyplot as plt
 import networkx as nx
 
-def get_map(data):
+
+def get_map(data, con):
+
+    lijnvoering = con.make_lijnvoering()[4]
     
     P = nx.Graph() 
     pos = data.get_cor()
@@ -21,11 +23,30 @@ def get_map(data):
             e= tuple(e)
             edges.append(e)
     P.add_edges_from(edges)
+
+
+    x = []
+    for station in lijnvoering:
+        tup = station
+
+        for i in range(0, len(tup)):
+            if i == len(tup) - 1:
+                break
+
+            connection1 = tup[i]
+            connection2 = tup[i+1]
+
+            connection = [connection1,connection2]
+            x.append(connection)
+    print(x)
+    print(lijnvoering)
+    
+
     
     fig,ax = plt.subplots(1, figsize = (15,15))
-    nx.draw(P, pos,with_labels = True)
+    nx.draw(P, pos, with_labels = True)
     plt.show()
-    plt.savefig('data/quality/ConnectionHolland.png')
+    plt.savefig('data/quality/map.png')
     # return P.edges()
     
     # print(data.get_cor())
@@ -40,5 +61,3 @@ def get_map(data):
     # print(P.nodes())
     # print(P.edges())
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   

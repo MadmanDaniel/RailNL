@@ -25,3 +25,11 @@
 
 ### 17/01/2021
 - nog niks
+
+### 21/01/2021
+- code runt efficienter, minder loops
+- main() heeft nu een menu voor elke file je wilt kiezen etc
+- Elk traject wordt nu ingekleurd in graph.py
+
+### 22/01/2021
+- Readme.md uitwerken
