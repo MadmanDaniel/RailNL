@@ -1,4 +1,5 @@
 import random
+from code.algorithm import functions
 from .randomize import Random
 import copy
 import csv
@@ -11,7 +12,7 @@ class Greedy():
         self.trajectconnection = copy.deepcopy(self.connection)
 
         self.all_con = data.all_con()
-        self.functions = data
+    
 
         self.max_time = max_time
         self.max_traject = max_traject
@@ -38,7 +39,7 @@ class Greedy():
             loops += 1
 
             get_con = self.trajectconnection[self.begin_station]
-            next_station = self.functions.get_shortest_des(get_con) 
+            next_station = functions.get_shortest_des(get_con) 
 
             get_time = next_station[1]
             next_station = next_station[0]
@@ -50,8 +51,6 @@ class Greedy():
 
             del self.trajectconnection[self.begin_station][next_station]
             del self.trajectconnection[next_station][self.begin_station]
-
-          
 
             if self.trajectconnection[self.begin_station] == {}:
                 del self.trajectconnection[self.begin_station]
@@ -65,68 +64,31 @@ class Greedy():
 
         return traject, sum(time),loops
 
-    def test(self):
-        x = []
-        for i in range(7):
-            print(x)
-            x.append(Greedy.get_traject(self))
-        return x
-
 
     def make_lijnvoering(self): 
     
         loops = 0
         while True:
-
             all_traject =[]
             time = 0
             while self.trajectconnection != {}:
-                
                 get_traject = Greedy.get_traject(self)
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
                 loops += get_traject[2]
-                # used_con = self.functions.get_remain_con(self.trajectconnection.items())
-                # if used_con == 18:
-                #     break
 
-            self.trajectconnection = copy.deepcopy(self.connection)
+            self.trajectconnection = functions.my_copy(self.connection)
 
             if len(all_traject) > self.max_traject:
                 continue
             break
 
-        used_con = self.functions.get_remain_con(self.trajectconnection.items())
+        used_con = functions.get_remain_con(self.trajectconnection.items())
+        p = used_con/self.all_con
+        T = len(all_traject)
+        Min = time
+
+        get_q = functions.get_q(p, T, Min)
             
         # print(f"aantal loops: {loops}")
-
-        return len(all_traject), used_con, time, loops
-
-
-
-    def get_solution(self):
-        total_loops = 0
-        ans = []
-        for i in range(100):
-            
-            lijnvoering = Greedy.make_lijnvoering(self)
-            total_loops += lijnvoering[3]
-
-            T = lijnvoering[0]
-            Min = lijnvoering[2]
-            used_con = lijnvoering[1]
-            p = used_con/self.all_con
-
-            q = p*10000 - (T*100 + Min)
-            ans.append(float(q))
-
-        #https://www.geeksforgeeks.org/writing-csv-files-in-python/
-        data = {'q': ans
-        }
-        filename = "data/quality/greedy_output.csv"
-
-        df = pd.DataFrame(data, columns = ['q'])
-        df.to_csv(filename)
-
-        
-        return print(f"loops greedy: {total_loops}")
+        return get_q, all_traject, len(all_traject), used_con, time, loops

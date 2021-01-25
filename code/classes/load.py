@@ -52,31 +52,8 @@ class Load():
             x += value
         return (len(x)/2)
 
-    def get_remain_con(self, remain_con):
-        used_con = []
-        for key, value in remain_con:
-            used_con += value
-        used_con = (len(used_con)/2)
-
-        return used_con
-
-    def get_shortest_des(self, get_con):
-        sort = sorted(get_con.items(), key=lambda item: item[1])
-
-        min_value = sort[0]
-        return min_value
-
-
-
     def get_cor(self):
         cor = {}
         for key, value in self.stations.items():
             cor[key] = (value.ycoordination, value.xcoordination)
-            
         return cor
-
-
-
-
-        
-                
