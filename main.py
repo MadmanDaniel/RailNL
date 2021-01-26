@@ -1,7 +1,7 @@
 from code.classes import station, load
 from code.algorithm import randomize, greedy, functions, hc
 from code.visualisation.graph import get_map
-from data.quality.hist import *
+from code.visualisation.hist import *
 
 import csv
 #import matplotlib.pyplot as plt
@@ -57,9 +57,7 @@ if __name__ == "__main__":
 
     best_output = functions.best_output(algorithm)
     print(f"best output: {best_output[0]}\nlijntraject: {best_output[1]}")
-    # print(algorithm())
-
-
+ 
 
     # ---------------------------- GRAPH -------------------------
     # # maken van grafiek dmv gegeven coordinaten

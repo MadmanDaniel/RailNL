@@ -18,7 +18,7 @@ def best_output(algorithm):
 
     data = {'q': all_q
     }
-    filename = "data/quality/greedy_output.csv"
+    filename = "data/quality/output.csv"
     df = pd.DataFrame(data, columns = ['q'])
     df.to_csv(filename)
 

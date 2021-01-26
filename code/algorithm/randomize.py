@@ -78,7 +78,7 @@ class Random():
                 loops += get_traject[2]
 
                 remain_con = functions.get_remain_con(self.copy_connection.items())
-                if remain_con < 7:
+                if remain_con < 5:
                     break
             self.copy_connection = functions.my_copy(self.connection)
             # self.copy_connection = copy.deepcopy(self.connection)
