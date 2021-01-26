@@ -8,7 +8,7 @@ def best_output(algorithm):
     highest_output = highest_traject[0]
 
     all_q = []
-    for i in range(100):
+    for i in range(2000):
         lijnvoering = algorithm.make_lijnvoering()
         all_q.append(lijnvoering[0])
 
