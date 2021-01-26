@@ -57,3 +57,6 @@ class Load():
         for key, value in self.stations.items():
             cor[key] = (value.ycoordination, value.xcoordination)
         return cor
+
+    # def get_next_con(self, begin_station):
+    #     return self.connection[begin_station]

@@ -11,9 +11,9 @@ def get_greedy_dist():
             for line in reader:
                 x.append(float(line[1]))
 
-    plt.hist(x=x, bins=10)
+    plt.hist(x=x, bins=100)
     plt.title('Histogram: Verdeling Greedy algoritme')
-    plt.xlabel('q')
+    plt.xlabel('Quality')
     plt.ylabel('Aantal')
     plt.savefig("data/quality/hist_greedy.png")
 
@@ -29,9 +29,9 @@ def get_random_dist():
                 x.append(float(line[1]))
             
 
-    plt.hist(x=x, bins=15)
+    plt.hist(x=x, bins=100)
     plt.title('Histogram: Verdeling Random algoritme')
-    plt.xlabel('q')
+    plt.xlabel('Quality')
     plt.ylabel('Aantal')
     plt.savefig("data/quality/hist_random.png")
 
@@ -56,10 +56,10 @@ def get_all_dist():
 
     
     # plt.hist(x=r, bins=15, alpha = 0.5, label = 'Random')
-    plt.hist([r, g], bins=15, label=['Random', 'Greedy'])
+    plt.hist([r, g], bins=100, label=['Random', 'Greedy'])
 
     plt.title('Histogram: Verdeling Greedy en Random')
-    plt.xlabel('q')
+    plt.xlabel('Quality')
     plt.ylabel('Aantal')
     plt.legend(loc='upper right')
     plt.savefig("data/quality/hist_GenR.png")

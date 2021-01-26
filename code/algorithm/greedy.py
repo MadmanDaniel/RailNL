@@ -4,12 +4,13 @@ from .randomize import Random
 import copy
 import csv
 import pandas as pd
+
 class Greedy():
     """Zoekt het steeds de kortste afstand met als beginstation een random"""
 
     def __init__(self, data, max_time, max_traject):
         self.connection = data.connection
-        self.trajectconnection = copy.deepcopy(self.connection)
+        self.copy_connection = copy.deepcopy(self.connection)
 
         self.all_con = data.all_con()
     
@@ -30,15 +31,16 @@ class Greedy():
         time = []
 
         loops = 0
-
-        self.begin_station = random.choice(list(self.trajectconnection))
+        
+        # self.begin_station = functions.begin_station_1con(self.copy_connection)
+        self.begin_station = random.choice(list(self.copy_connection))
         traject.append(self.begin_station)
 
         while sum(time) < time_max:
 
             loops += 1
 
-            get_con = self.trajectconnection[self.begin_station]
+            get_con = self.copy_connection[self.begin_station]
             next_station = functions.get_shortest_des(get_con) 
 
             get_time = next_station[1]
@@ -49,17 +51,17 @@ class Greedy():
                 time.pop()
                 break
 
-            del self.trajectconnection[self.begin_station][next_station]
-            del self.trajectconnection[next_station][self.begin_station]
+            del self.copy_connection[self.begin_station][next_station]
+            del self.copy_connection[next_station][self.begin_station]
 
-            if self.trajectconnection[self.begin_station] == {}:
-                del self.trajectconnection[self.begin_station]
+            if self.copy_connection[self.begin_station] == {}:
+                del self.copy_connection[self.begin_station]
 
             self.begin_station = next_station
             traject.append(next_station)
 
-            if self.trajectconnection[next_station] == {}:
-                del self.trajectconnection[next_station]
+            if self.copy_connection[next_station] == {}:
+                del self.copy_connection[next_station]
                 break
 
         return traject, sum(time),loops
@@ -71,24 +73,29 @@ class Greedy():
         while True:
             all_traject =[]
             time = 0
-            while self.trajectconnection != {}:
+            while self.copy_connection != {}:
                 get_traject = Greedy.get_traject(self)
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
                 loops += get_traject[2]
-
-            self.trajectconnection = functions.my_copy(self.connection)
+                
+                remain_con = functions.get_remain_con(self.copy_connection.items())
+                if remain_con < 5:
+                    break
+            self.copy_connection = functions.my_copy(self.connection)
 
             if len(all_traject) > self.max_traject:
                 continue
             break
 
-        used_con = functions.get_remain_con(self.trajectconnection.items())
+        used_con = self.all_con - remain_con
         p = used_con/self.all_con
         T = len(all_traject)
         Min = time
 
         get_q = functions.get_q(p, T, Min)
+
+        print(p, T, Min, get_q)
             
         # print(f"aantal loops: {loops}")
         return get_q, all_traject, len(all_traject), used_con, time, loops

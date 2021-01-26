@@ -70,13 +70,16 @@ class Random():
             
             all_traject = []
             time = 0
-            while self.copy_connection != {}:
+            while len(self.copy_connection) != 0:
                 # loops += 1
                 get_traject = Random.get_traject(self)
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
                 loops += get_traject[2]
-                
+
+                remain_con = functions.get_remain_con(self.copy_connection.items())
+                if remain_con < 7:
+                    break
             self.copy_connection = functions.my_copy(self.connection)
             # self.copy_connection = copy.deepcopy(self.connection)
 
@@ -85,11 +88,14 @@ class Random():
             break
         
         # gives the amount of used connection
-        used_con = functions.get_remain_con(self.copy_connection.items())
+        
+        used_con = self.all_con - remain_con
         p = used_con/self.all_con
         T = len(all_traject)
         Min = time
-
-        get_q = functions.get_q(p, T, Min)
         
-        return get_q, all_traject, len(all_traject), used_con, time, loops
+        get_q = functions.get_q(p, T, Min)
+        print(p, T,Min, get_q)
+        
+                
+        return get_q, all_traject, loops

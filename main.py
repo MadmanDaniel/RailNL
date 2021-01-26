@@ -1,8 +1,5 @@
-#%% 
-# Code hierboven is alleen nodig voor Matplotlib 
-# (dus visualisatie van de datapunten) -> is van extension Jupyter
 from code.classes import station, load
-from code.algorithm import randomize, greedy, functions
+from code.algorithm import randomize, greedy, functions, hc
 from code.visualisation.graph import get_map
 from data.quality.hist import *
 
@@ -37,7 +34,7 @@ if __name__ == "__main__":
 
     data = load.Load(stations_file, connecties_file)
 
-    print("Which Algorithm do you want?\n -> Random   (1)\n -> Greedy   (2)\n------------------")
+    print("Which Algorithm do you want?\n -> Random      (1)\n -> Greedy      (2)\n -> Hillclimber (3)\n------------------")
     chosen_alg = input("I choose: ")
 
     if chosen_alg == "1":
@@ -51,20 +48,22 @@ if __name__ == "__main__":
         algorithm = greedy.Greedy(data, max_time, max_traject)
         # greedy1.get_solution()
         # ------------------------------------------------------------
+    elif chosen_alg == "3":
+        algorithm = hc.Hillclimber(data, max_time, max_traject)
     else:
         print("Error, pick a valid number")
         sys.exit()
     print("Loading.......")
 
     best_output = functions.best_output(algorithm)
-    print(f"best output: {best_output}")
+    print(f"best output: {best_output[0]}\nlijntraject: {best_output[1]}")
     # print(algorithm())
 
 
 
     # ---------------------------- GRAPH -------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    # dist = get_greedy_dist()
+    dist = get_greedy_dist()
     # dist = get_random_dist()
     # dist = get_all_dist()
     graph = get_map(data, best_output[1])
