@@ -1,6 +1,3 @@
-# Code hierboven is alleen nodig voor Matplotlib 
-# (dus visualisatie van de datapunten) -> is van extension Jupyter
-# from code.classes import station, load
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
@@ -17,10 +14,7 @@ def get_map(data, con):
     
     P = nx.Graph() 
     pos = data.get_cor()
-    # P.add_nodes_from(pos)
-
     some_colors = ["r", "b", "g", "y","c","m","y","k"]
-    # some_colors = list(random.choice(range))
     
     for a_traject in lijnvoering:
         traject = []
@@ -40,12 +34,11 @@ def get_map(data, con):
     edges = P.edges()
     colors = [P[u][v]['color'] for u,v in edges]
     weights = [P[u][v]['weight'] for u,v in edges]
-    # plt.grid()
     fig,ax = plt.subplots(1, figsize = (15,15))
     nx.draw(P, pos, edge_color=colors, width=weights, node_color="black", node_size=50)
     
     
     plt.show()
-    plt.savefig('data/quality/map.png')
+    plt.savefig('data/output/map.png')
 
    

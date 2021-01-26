@@ -30,13 +30,14 @@ class Hillclimber():
 
         for i in range(100):
             # print(best_traject)
+            
 
             iteration += 1
-            get_traject = randomize.Random.get_traject(self)
-            # get_traject = greedy.Greedy.get_traject(self)
+            # get_traject = randomize.Random.get_traject(self)
+            get_traject = greedy.Greedy.get_traject(self)
 
-            # if get_traject[0][0] in self.used_con:
-            #     continue
+            if get_traject[0][0] in self.used_con:
+                continue
             Min = get_traject[1]
             T =1
             p = (self.all_con - (functions.get_remain_con(self.copy_connection.items()))) / self.all_con 
@@ -70,8 +71,9 @@ class Hillclimber():
         T = len(lijnvoering)
         p = (len(self.used_con)/2) / self.all_con
         get_q = functions.get_q(p, T, Min)
-        print(p, T , Min)
-        print(get_q)
+
+        # self.used_con = []
+        print(p, T,Min, get_q)
         return get_q, lijnvoering ,Min, T
         
 

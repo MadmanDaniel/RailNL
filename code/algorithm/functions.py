@@ -1,6 +1,7 @@
 
 import random
 import pandas as pd
+import csv
 
 def best_output(algorithm):
     highest_traject = algorithm.make_lijnvoering()
@@ -16,11 +17,19 @@ def best_output(algorithm):
             highest_output = new_output
             highest_traject = lijnvoering
 
-    data = {'q': all_q
+    all_data = {'q': all_q
     }
-    filename = "data/quality/output.csv"
-    df = pd.DataFrame(data, columns = ['q'])
+    filename = "data/output/output.csv"
+    df = pd.DataFrame(all_data, columns = ['q'])
     df.to_csv(filename)
+
+    filename_solution = "data/output/solution.csv"
+    with open(filename_solution, 'w', newline="") as infile:
+        writer = csv.writer(infile)
+        for index, traject in enumerate(highest_traject[1]):
+            trajectnumber = str(f'train_{index+1}')
+            writer.writerow([trajectnumber, traject])
+        writer.writerow(['best_output', highest_output])
 
     return highest_output, highest_traject[1]
 

@@ -78,8 +78,8 @@ class Random():
                 loops += get_traject[2]
 
                 remain_con = functions.get_remain_con(self.copy_connection.items())
-                if remain_con < 5:
-                    break
+                # if remain_con < 5:
+                #     break
             self.copy_connection = functions.my_copy(self.connection)
             # self.copy_connection = copy.deepcopy(self.connection)
 
@@ -95,7 +95,7 @@ class Random():
         Min = time
         
         get_q = functions.get_q(p, T, Min)
-        print(p, T,Min, get_q)
+        # print(p, T,Min, get_q)
         
                 
         return get_q, all_traject, loops
