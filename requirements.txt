@@ -1,0 +1,5 @@
+# Extensies nodig voor het programma
+
+matplotlib==3.3.3
+networkx==2.5
+pandas==1.2.1
