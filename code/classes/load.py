@@ -1,7 +1,5 @@
 import csv
 from .station import Station
-#import matplotlib.pyplot as plt
-
 
 class Load():
 
@@ -22,8 +20,8 @@ class Load():
             reader = csv.reader(infile)
             header = next(infile)
 
+            # make station objects with the data of the stations
             for line in reader:
-                # order = station, x_cor, y_cor
                 station = Station(line[0], float(line[1]), float(line[2]))
                 self.stations[station.station_name] = station
     
@@ -34,7 +32,7 @@ class Load():
         with open(connection_file, 'r') as infile:
             reader = csv.reader(infile)
             header = next(infile)
-
+  
             for line in reader:
                 begin_station = self.stations[line[0]]
                 end_station = self.stations[line[1]]
@@ -54,17 +52,23 @@ class Load():
 
     def get_con(self):
         """
-
+        Returning
         """
         return self.connection
 
     def all_con(self):
+        """
+        Returning 
+        """
         x = []
         for key,value in self.connection.items():
             x += value
         return (len(x)/2)
 
     def get_cor(self):
+        """
+        Returning the coordinates of the station
+        """
         cor = {}
         for key, value in self.stations.items():
             cor[key] = (value.ycoordination, value.xcoordination)
