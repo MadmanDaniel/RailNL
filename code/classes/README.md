@@ -1,8 +1,8 @@
 # Classes
-De bestanden in deze map bevatten Classes die in alle methoden werden gebruikt. Hieronder vindt u een beschrijving van deze bestanden.
+The files in this folder contain Classes used in all methods. Below is a description of these files.
 
 ### load.py
-Het bestand 'load.py' wordt gebruikt om bestanden uit de bijlagemap in te laden. Het bevat verschillende methoden die de informatie uit deze bijlagebestanden importeren. De informatie gaat over treinstations en hun coördinaten, verbindingen tussen stations en verbindingstijden.
+The file 'load.py' is used to load files from the attachment folder. It includes several methods that import the information from these attachment files. The information is about train stations and their coordinates, connections between stations and connection times.
 
 ### station.py
-Het bestand 'station.py' wordt gebruikt om de stations in te laden.
+The file 'station.py' is used to load the stations.
