@@ -99,13 +99,8 @@ class Hillclimber():
              
             start_station = next_station
 
-    
         self.copy_time = sum(time) + self.copy_time
-        # print(len(self.copy_notused.values()))
-        # print(self.all_con)
         p = (self.all_con - len(self.copy_notused.values()))  / self.all_con
-        # print(self.copy_notused.items())
-        # print( functions.get_remain_con(self.copy_notused.items()))
         self.copy_traject.append(traject)
         T = len(self.copy_traject)
         get_q = functions.get_q(p,T,self.copy_time)
@@ -115,19 +110,20 @@ class Hillclimber():
     def get_best_q(self):
     
         for i in range(1000):
-            print(f"begin voor update: {self.best_traject}\n")
-            print(f"begin voor update: {self.best_q, self.used_time }\n")
+            # print(f"begin voor update: {self.best_traject}\n")
+            # print(f"begin voor update: {self.best_q, self.used_time }\n")
             self.delete_trajects()
             new_traject = self.add_trajects()
             
-            print(f"data na update: {self.copy_traject}\n")
-            print(f"data na update: {new_traject[0],new_traject[4], new_traject[5], new_traject[2]}" )
+            # print(f"data na update: {self.copy_traject}\n")
+            # print(f"data na update: {new_traject[0],new_traject[4], new_traject[5], new_traject[2]}" )
 
             if new_traject[0] > self.best_q:
                 self.best_q = new_traject[0]
                 self.best_traject = new_traject[1]
                 self.used_time = new_traject[2]
                 self.copy_notused = new_traject[3]
+            print(self.best_q)
             
 
                 

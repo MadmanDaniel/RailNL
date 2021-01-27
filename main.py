@@ -49,13 +49,22 @@ if __name__ == "__main__":
         # greedy1.get_solution()
         # ------------------------------------------------------------
     elif chosen_alg == "3":
-        algorithm = greedy.Greedy(data, max_time, max_traject)
+        # ---------------------------- HILLCLIMBER ------------------------
+        print("Which algorithm do you want to apply?")
+        print(" -> Random(1)\n -> Greedy (2)")
+        apply_alg = input("I choose: ")
+        if  apply_alg == "1":
+             algorithm = randomize.Random(data, max_time, max_traject)
+        elif apply_alg == "2":
+             algorithm = greedy.Greedy(data, max_time, max_traject)
         best_output = functions.best_output(algorithm)
         hill = hillclimber.Hillclimber(data, best_output, max_time)
-        print(hill.get_best_q())
+        # print(hill.get_best_q())
+        else:
+            print("Error, pick a valid number")
+            sys.exit()
+        # ------------------------------------------------------------
     else:
-
-
         print("Error, pick a valid number")
         sys.exit()
     print("Loading.......")
