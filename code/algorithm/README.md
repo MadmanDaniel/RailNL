@@ -1,4 +1,4 @@
-# Algoritme
+# Algorithm
 
 ### greedy.py
 The Greedy algorithm in this case means that each station must be connected to the nearest station. The starting station is random. An example is: The Hague Central: ["Delft": 13.0, "Gouda": 18.0, "Leiden Central": 12.0]. The Hague Central would then have to be connected with Leiden Central since it has the shortest travel time.
