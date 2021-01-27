@@ -44,7 +44,6 @@ class Hillclimber():
         
         return self.copy_traject, self.copy_time, self.copy_notused
 
-
     def add_trajects(self):
         """ Adds a random traject while updating the time and used connections"""
         self.copy_traject = self.delete_trajects()[0]
