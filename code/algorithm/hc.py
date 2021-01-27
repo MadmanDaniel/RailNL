@@ -1,13 +1,16 @@
 import copy
 from code.algorithm import functions, randomize, greedy
 import random
+
 class Hillclimber():
 
     def __init__(self, data, max_time, max_traject):
+        """
+        Initialize a Hillclimber
+        """
         self.connections = data.connection
         self.copy_connection = copy.deepcopy(self.connections)
         self.all_con = data.all_con()
-
         self.max_time = max_time
         self.max_traject = max_traject
         self.traject = []
@@ -51,6 +54,11 @@ class Hillclimber():
         return best_traject
 
     def make_lijnvoering(self):
+        """
+        Ensures that the trajectories are created,
+        and the score is calculated
+        """
+
         lijnvoering = []
         Min = 0
 

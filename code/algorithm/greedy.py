@@ -6,31 +6,31 @@ import csv
 import pandas as pd
 
 class Greedy():
-    """Zoekt het steeds de kortste afstand met als beginstation een random"""
+    """
+    It always looks for the shortest distance,
+    with a random starting station
+    """
 
     def __init__(self, data, max_time, max_traject):
+        """
+        Initialize a Greedy
+        """
         self.connection = data.connection
         self.copy_connection = copy.deepcopy(self.connection)
-
         self.all_con = data.all_con()
-    
-
         self.max_time = max_time
         self.max_traject = max_traject
 
-
     def get_traject(self):
         """
-        Maak een lijnvoering voor Noord- en Zuid-Holland 
-        met maximaal zeven trajecten binnen een tijdsframe van twee uur, 
-        waarbij alle verbindingen bereden worden.
+        Creates a line for North and South Holland 
+        with up to seven trajectories within a two hour time frame, 
+        where all connections are ridden.
         """
         traject = []
         time_max = self.max_time
         time = []
-
         loops = 0
-        
         # self.begin_station = functions.begin_station_1con(self.copy_connection)
         self.begin_station = random.choice(list(self.copy_connection))
         traject.append(self.begin_station)
@@ -65,14 +65,18 @@ class Greedy():
 
         return traject, sum(time),loops
 
-
     def make_lijnvoering(self): 
-    
+        """
+        Ensures that the trajectories are created,
+        and the score is calculated
+        """
         loops = 0
+
         while True:
-            all_traject =[]
+            all_traject = []
             time = 0
             while self.copy_connection != {}:
+
                 get_traject = Greedy.get_traject(self)
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
@@ -92,7 +96,6 @@ class Greedy():
         p = used_con/self.all_con
         T = len(all_traject)
         Min = time
-
         get_q = functions.get_q(p, T, Min)
 
         # print(p, T, Min, get_q)

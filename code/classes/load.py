@@ -6,12 +6,18 @@ from .station import Station
 class Load():
 
     def __init__(self, station_file, connection_file):
+        """
+        Loading in of the CSV files in /data
+        """
         self.stations = {}
         self.connection = {}
         self.load_station(station_file)
         self.load_connection(connection_file)
         
     def load_station(self, station_file):
+        """
+        Loading in of the CSV file in /data, StationsHolland.csv 
+        """
         with open(station_file, 'r') as infile:
             reader = csv.reader(infile)
             header = next(infile)
@@ -22,6 +28,9 @@ class Load():
                 self.stations[station.station_name] = station
     
     def load_connection(self, connection_file):
+        """ 
+        Loading in of the CSV file in /data, ConnectiesHolland.csv
+        """
         with open(connection_file, 'r') as infile:
             reader = csv.reader(infile)
             header = next(infile)
@@ -44,6 +53,9 @@ class Load():
                 self.connection[end_station.station_name][begin_station.station_name] = minutes
 
     def get_con(self):
+        """
+
+        """
         return self.connection
 
     def all_con(self):

@@ -6,12 +6,19 @@ import pandas as pd
 from code.algorithm import functions
 
 class Random():
+    """
+    It always searches a random station
+    with a connection and
+    as starting station a random station
+    """
 
     def __init__(self, data, max_time, max_traject):
+        """
+        Initialize a Random
+        """
         self.connection = data.connection
         self.copy_connection = copy.deepcopy(data.connection)
         self.all_con = data.all_con()
-
         self.max_time = max_time
         self.max_traject = max_traject
 
@@ -19,12 +26,11 @@ class Random():
 
     def get_traject(self):
         """
-        Maak een lijnvoering voor Noord- en Zuid-Holland 
-        met maximaal zeven trajecten binnen een tijdsframe van twee uur, 
-        waarbij alle verbindingen bereden worden.
+        Creates a line for North and South Holland 
+        with up to seven trajectories within a two hour time frame, 
+        where all connections are ridden.
         """
         traject = []
-
         time_max = self.max_time
         time = []
         get_rdm_station = random.choice(list(self.copy_connection))
@@ -63,8 +69,11 @@ class Random():
 
         return traject, sum(time), loops
 
-
     def make_lijnvoering(self):
+        """
+        Ensures that the trajectories are created,
+        and the score is calculated
+        """
         loops = 0
         while True: 
             
