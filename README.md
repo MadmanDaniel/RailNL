@@ -8,7 +8,7 @@ Om deze code te gebruiken zijn er voorafgaand packages nodig om deze code werken
 <pre> pip install -r requirements.txt </pre>
 
 ## Hoe te werk?
-Gebruik de volgende instructie om de code uit te voeren: <pre> python main.py </pre>. Het programma zal u eerst vragen welk deel van Nederland u wilt gebruiken. Het programma zal u dan vragen welk algoritme u wilt gebruiken. Er zijn vier opties: Random, Greedy, Greedy Lookahead en Hill Climber. Elk algoritme produceert een afbeelding van de gekozen paden en de score
+Gebruik de volgende instructie om de code uit te voeren: <pre> python main.py </pre>Het programma zal u eerst vragen welk deel van Nederland u wilt gebruiken. Het programma zal u dan vragen welk algoritme u wilt gebruiken. Er zijn vier opties: Random, Greedy, Greedy Lookahead en Hill Climber. Elk algoritme produceert een afbeelding van de gekozen paden en de score
 
 <img src = "https://github.com/MadmanDaniel/RailNL/blob/main/doc/command.png">
 
