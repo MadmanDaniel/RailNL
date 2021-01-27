@@ -1,36 +1,36 @@
 # RailNL
 
-## Doel
-De opdracht van dit project is om een heuristiek binnen python te creëren die een voeringssysteem voor intercitytreinen genereert met als doel de algehele kwaliteit van de lijnvoering te optimaliseren. Dit kan worden gedaan door de doelfunctie die in de oefening wordt gegeven, te maximaliseren. De doelfunctie kan als volgt worden omschreven: K = p * 10000 - (T * 100 + Min), waarbij K de kwaliteit is van het treinvoeringsysteem, p een fractie is van het aantal gebruikte verbindingen, T het aantal gebruikte paden en Min is de totale tijd in minuten van alle gebruikte paden. Er zijn twee voorwaarden waaraan moet worden voldaan bij het maken van een treinlijnsysteem. De eerste is dat een traject een maximale tijdslengte heeft en de tweede voorwaarde is dat een treinlijnsysteem een maximaal aantal paden heeft.
+## Purpose
+The case of this project is to create a heuristic within Python that generates a lining system for intercity trains with the aim of optimizing the overall quality of the lines. This can be done by maximizing the goal function given in the exercise. The objective function can be described as follows: K = p * 10000 - (T * 100 + Min), where K is the quality of the train control system, p is a fraction of the number of connections used, T the number of paths used, and Min is the total time in minutes of all used paths. There are two conditions that must be met when creating a train line system. The first is that a route has a maximum time length, and the second condition is that a train line system has a maximum number of paths. 
 
-## Vereisten
-Om deze code te gebruiken zijn er voorafgaand packages nodig om deze code werkend te krijgen. Deze zijn te installeren via de command:
+## Requirements
+To use this code, prior packages are required to make this code work. These can be installed through the command:
 <pre> pip install -r requirements.txt </pre>
 
-## Hoe te werk?
-Gebruik de volgende instructie om de code uit te voeren: <pre> python main.py </pre>. Het programma zal u eerst vragen welk deel van Nederland u wilt gebruiken. Het programma zal u dan vragen welk algoritme u wilt gebruiken. Er zijn vier opties: Random, Greedy, Greedy Lookahead en Hill Climber. Elk algoritme produceert een afbeelding van de gekozen paden en de score
+## How does it work?
+Use the following statement to run the code: <pre> python main.py </pre> The program will first ask you which part of the Netherlands you want to use. The program will then ask you which algorithm you want to use. There are three options: Random, Greedy and Hill Climber. Each algorithm produces an image of the chosen paths and the score
 
 <img src = "https://github.com/MadmanDaniel/RailNL/blob/main/doc/command.png">
 
-## Extensies
+## Extensions
 - networkx
 - matplotlib
 - random
 - csv
 - pandas
 
-## Structuur 
+## Structure 
 
-De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
+The following list describes the most important folders and files in the project, and where to find them:
 
-- **/code**: Alle code voor dit porject
-  - **/code/algorithm**: De code voor de algoritmes 
-  - **/code/classes**: De classes voor deze case
-  - **/code/visualisation**: De code voor de visualisaties
-- **/data**: De databestanden die nodig zijn om de graaf te vullen en te visualiseren
+- **/code**: All code for this project
+  - **/code/algorithm**: The code for the algorithms
+  - **/code/classes**: The classes for this case
+  - **/code/visualisation**: The code for the visualizations
+- **/data**: The data files needed to visualize the graph
 
-## Auteurs
-Team naam: **Team Rocket**
+## Authors
+Team name: **Team Rocket**
 * Daniel Djuly
 * Hatim Hashi
 * Elvin Li

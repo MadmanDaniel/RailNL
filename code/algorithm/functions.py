@@ -30,7 +30,10 @@ def best_output(algorithm):
             writer.writerow([trajectnumber, traject])
         writer.writerow(['best_output', highest_output])
 
-    return highest_output, highest_traject[1]
+    # print(f"ffff{highest_traject[4]}")
+
+
+    return highest_output, highest_traject[1], highest_traject[2], highest_traject[3], highest_traject[4]
 
 
 def get_q(p,T,Min):
