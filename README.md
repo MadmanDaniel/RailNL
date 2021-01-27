@@ -23,7 +23,7 @@ Gebruik de volgende instructie om de code uit te voeren: <pre> python main.py </
 
 De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
 
-- **/code**: Alle code voor dit porject
+- **/code**: Alle code voor dit project
   - **/code/algorithm**: De code voor de algoritmes 
   - **/code/classes**: De classes voor deze case
   - **/code/visualisation**: De code voor de visualisaties
