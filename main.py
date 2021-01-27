@@ -40,44 +40,41 @@ if __name__ == "__main__":
     if chosen_alg == "1":
         # ----------------------------- RANDOM -----------------------
         algorithm = randomize.Random(data, max_time, max_traject)
-        # print(algorithm.make_lijnvoering())
+        best_output = functions.best_output(algorithm)
         # ------------------------------------------------------------
 
     elif chosen_alg == "2":
         # ---------------------------- GREEDY ------------------------
         algorithm = greedy.Greedy(data, max_time, max_traject)
-        # greedy1.get_solution()
+        best_output = functions.best_output(algorithm)
         # ------------------------------------------------------------
     elif chosen_alg == "3":
         # ---------------------------- HILLCLIMBER ------------------------
         print("Which algorithm do you want to apply?")
         print(" -> Random(1)\n -> Greedy (2)")
         apply_alg = input("I choose: ")
-        if  apply_alg == "1":
-             algorithm = randomize.Random(data, max_time, max_traject)
+        if apply_alg == "1":
+            algorithm = randomize.Random(data, max_time, max_traject)
         elif apply_alg == "2":
-             algorithm = greedy.Greedy(data, max_time, max_traject)
-        best_output = functions.best_output(algorithm)
-        hill = hillclimber.Hillclimber(data, best_output, max_time)
-        # print(hill.get_best_q())
+            algorithm = greedy.Greedy(data, max_time, max_traject)
         else:
             print("Error, pick a valid number")
             sys.exit()
+        highest_algorithm = functions.best_output(algorithm)
+        best_output = hillclimber.Hillclimber(data, highest_algorithm, max_time).get_best_q()
         # ------------------------------------------------------------
     else:
         print("Error, pick a valid number")
         sys.exit()
     print("Loading.......")
 
-    best_output = functions.best_output(algorithm)
-    # print(f"best output: {best_output[0]}\nlijntraject: {best_output[5]}")
-    print(best_output[0])
-
+    
+    print(f"\nOur best calculated quality is: {best_output[0]}")
+    print("For data and visualization see the data/output-folder")
+   
     # ---------------------------- GRAPH -------------------------
     # # maken van grafiek dmv gegeven coordinaten
-    dist = get_greedy_dist()
-    # dist = get_random_dist()
-    # dist = get_all_dist()
+    dist = get_dist()
     graph = get_map(data, best_output[1])
     # ------------------------------------------------------------
     

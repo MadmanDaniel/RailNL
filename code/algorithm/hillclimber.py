@@ -123,7 +123,8 @@ class Hillclimber():
                 self.best_traject = new_traject[1]
                 self.used_time = new_traject[2]
                 self.copy_notused = new_traject[3]
-            print(self.best_q)
+                print(self.best_q)
+        return self.best_q, self.best_traject
             
 
                 
