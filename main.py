@@ -4,10 +4,6 @@ from code.visualisation.graph import get_map
 from code.visualisation.hist import *
 
 import csv
-#import matplotlib.pyplot as plt
-#import networkx as nx
-#import numpy as np
-
 import sys
 
 if __name__ == "__main__":

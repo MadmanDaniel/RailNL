@@ -10,3 +10,6 @@ dit niet het geval is wordt er weer blanco begonnen.
 
 ### random.py
 Sinds het compleet random is, moet er rekening worden gehouden dat elke station verbonden moet zijn met het gecorrespondeerde station. Het eerste station wordt random gekozen met de module Random. Waarbij 1 van de 22 treinstations gekozen wordt. Vanuit hier moet de algoritme een traject afleggen, waarbij de stations wel een valid route af kan leggen. Bijvoorbeeld, [Alkmaar, Hoorn] is een connectie, echter is [Alkmaar, Den Haag] geen connectie. Dus het is van belang dat er een Key-Value is met de stations.
+
+### hillclimber.py
+Adds and deletes trajectory's from the random/greedy line until a higher q-factor is gained
