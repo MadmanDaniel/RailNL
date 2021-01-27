@@ -1,5 +1,5 @@
 from code.classes import station, load
-from code.algorithm import randomize, greedy, functions, hc
+from code.algorithm import randomize, greedy, functions, hillclimber
 from code.visualisation.graph import get_map
 from code.visualisation.hist import *
 
@@ -49,15 +49,20 @@ if __name__ == "__main__":
         # greedy1.get_solution()
         # ------------------------------------------------------------
     elif chosen_alg == "3":
-        algorithm = hc.Hillclimber(data, max_time, max_traject)
+        algorithm = greedy.Greedy(data, max_time, max_traject)
+        best_output = functions.best_output(algorithm)
+        hill = hillclimber.Hillclimber(data, best_output, max_time)
+        print(hill.get_best_q())
     else:
+
+
         print("Error, pick a valid number")
         sys.exit()
     print("Loading.......")
 
     best_output = functions.best_output(algorithm)
-    print(f"best output: {best_output[0]}\nlijntraject: {best_output[1]}")
- 
+    # print(f"best output: {best_output[0]}\nlijntraject: {best_output[5]}")
+    print(best_output[0])
 
     # ---------------------------- GRAPH -------------------------
     # # maken van grafiek dmv gegeven coordinaten

@@ -18,7 +18,6 @@ class Greedy():
         self.max_time = max_time
         self.max_traject = max_traject
 
-        
 
     def get_traject(self):
         """
@@ -80,8 +79,9 @@ class Greedy():
                 loops += get_traject[2]
                 
                 remain_con = functions.get_remain_con(self.copy_connection.items())
-                # if remain_con < 5:
-                #     break
+                if remain_con <= 10:
+                    break
+            con_notused_str = self.copy_connection
             self.copy_connection = functions.my_copy(self.connection)
 
             if len(all_traject) > self.max_traject:
@@ -98,4 +98,4 @@ class Greedy():
         # print(p, T, Min, get_q)
             
         # print(f"aantal loops: {loops}")
-        return get_q, all_traject, len(all_traject), used_con, time, loops
+        return get_q, all_traject, Min, used_con, con_notused_str
