@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
+#references:
+    # https://stackoverflow.com/questions/28999287/generate-random-colors-rgb    
+    # https://stackoverflow.com/questions/25639169/networkx-change-color-width-according-to-edge-attributes-inconsistent-result
+    # https://stackoverflow.com/questions/20133479/how-to-draw-directed-graphs-using-networkx-in-python
 
 def random_color():
-    # https://stackoverflow.com/questions/28999287/generate-random-colors-rgb
     random_color = "#"+''.join([random.choice('0123456789ABCDEF') for i in range(6)])
     return random_color
     
-
 def get_map(data, con):
 
     lijnvoering = con
@@ -27,9 +29,7 @@ def get_map(data, con):
             traject.append(connection)
       
         P.add_edges_from(traject, color= random_color(), weight=2.5)
-    
-    # https://stackoverflow.com/questions/25639169/networkx-change-color-width-according-to-edge-attributes-inconsistent-result
-    # https://stackoverflow.com/questions/20133479/how-to-draw-directed-graphs-using-networkx-in-python
+
 
     edges = P.edges()
     colors = [P[u][v]['color'] for u,v in edges]

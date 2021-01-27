@@ -1,5 +1,8 @@
 import csv
 from .station import Station
+# references
+    # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
+    # https://www.programiz.com/python-programming/nested-dictionary
 
 class Load():
 
@@ -37,9 +40,7 @@ class Load():
                 begin_station = self.stations[line[0]]
                 end_station = self.stations[line[1]]
                 minutes = float(line[2])
-                
-                # https://stackoverflow.com/questions/20585920/how-to-add-multiple-values-to-a-dictionary-key-in-python
-                # https://www.programiz.com/python-programming/nested-dictionary
+            
                 # making of a nested dict
                 self.connection.setdefault(begin_station.station_name, {})
                 if begin_station.station_name not in self.connection:
@@ -52,13 +53,13 @@ class Load():
 
     def get_con(self):
         """
-        Returning
+        Returning connections of all station in a nested dictionary
         """
         return self.connection
 
     def all_con(self):
         """
-        Returning 
+        Returning connections in a float type
         """
         x = []
         for key,value in self.connection.items():
@@ -73,6 +74,3 @@ class Load():
         for key, value in self.stations.items():
             cor[key] = (value.ycoordination, value.xcoordination)
         return cor
-
-    # def get_next_con(self, begin_station):
-    #     return self.connection[begin_station]

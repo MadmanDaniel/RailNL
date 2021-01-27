@@ -11,7 +11,7 @@ class Random():
     with a connection and
     as starting station a random station
     """
-
+    
     def __init__(self, data, max_time, max_traject):
         """
         Initialize a Random
@@ -22,13 +22,9 @@ class Random():
         self.max_time = max_time
         self.max_traject = max_traject
 
-
-
     def get_traject(self):
         """
-        Creates a line for North and South Holland 
-        with up to seven trajectories within a two hour time frame, 
-        where all connections are ridden.
+        Creates a trajectory by means of a random start_station and by connecting random stations if there is a connection
         """
         traject = []
         time_max = self.max_time
@@ -38,15 +34,11 @@ class Random():
 
         loops = 0
 
+        # makes a trajectory with a random path
         while sum(time) < time_max:
             loops += 1
-
             get_connections = self.copy_connection[get_rdm_station]
-
-            # pakt random connectie ervan
             get_rdm_connection = random.choice(list(get_connections))
-    
-            # pak de tijd ervan
             get_time = self.copy_connection[get_rdm_station][get_rdm_connection]
             
             time.append(get_time)
@@ -54,6 +46,7 @@ class Random():
                 time.pop()
                 break
             
+            # connections that have already been used are no longer possible to use
             del self.copy_connection[get_rdm_station][get_rdm_connection]
             del self.copy_connection[get_rdm_connection][get_rdm_station]
 
@@ -71,8 +64,7 @@ class Random():
 
     def make_lijnvoering(self):
         """
-        Ensures that the trajectories are created,
-        and the score is calculated
+        Creates a line by adding trajectories, by adding trajectiories from get_traject
         """
         loops = 0
         while True: 
@@ -80,7 +72,7 @@ class Random():
             all_traject = []
             time = 0
             while len(self.copy_connection) != 0:
-                # loops += 1
+                loops += 1
                 get_traject = Random.get_traject(self)
                 all_traject.append(get_traject[0])
                 time += get_traject[1]
@@ -91,21 +83,15 @@ class Random():
                     break
             con_notused_str = self.copy_connection
             self.copy_connection = functions.my_copy(self.connection)
-            # self.copy_connection = copy.deepcopy(self.connection)
 
             if len(all_traject) > self.max_traject:
                 continue
             break
-        
-        # gives the amount of used connection
-        
+             
         used_con = self.all_con - remain_con
         p = used_con/self.all_con
         T = len(all_traject)
         Min = time
-        
         get_q = functions.get_q(p, T, Min)
-        # print(p, T,Min, get_q)
-        
-                
+
         return get_q, all_traject, Min, used_con, con_notused_str

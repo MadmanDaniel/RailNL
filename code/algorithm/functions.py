@@ -3,6 +3,7 @@ import pandas as pd
 import csv
 
 def best_output(algorithm):
+    # 
     highest_traject = algorithm.make_lijnvoering()
     highest_output = highest_traject[0]
 
@@ -29,9 +30,6 @@ def best_output(algorithm):
             trajectnumber = str(f'train_{index+1}')
             writer.writerow([trajectnumber, traject])
         writer.writerow(['best_output', highest_output])
-
-    # print(f"ffff{highest_traject[4]}")
-
 
     return highest_output, highest_traject[1], highest_traject[2], highest_traject[3], highest_traject[4]
 

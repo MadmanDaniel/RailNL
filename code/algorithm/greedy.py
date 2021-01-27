@@ -31,10 +31,11 @@ class Greedy():
         time_max = self.max_time
         time = []
         loops = 0
-        # self.begin_station = functions.begin_station_1con(self.copy_connection)
         self.begin_station = random.choice(list(self.copy_connection))
         traject.append(self.begin_station)
 
+        # Generates a trajectory using a random start station by connecting the nearest station each time, 
+        # as long as the time condition is not broken
         while sum(time) < time_max:
 
             loops += 1
@@ -50,12 +51,14 @@ class Greedy():
                 time.pop()
                 break
 
+            # connections that have already been used are no longer possible to use
             del self.copy_connection[self.begin_station][next_station]
             del self.copy_connection[next_station][self.begin_station]
 
             if self.copy_connection[self.begin_station] == {}:
                 del self.copy_connection[self.begin_station]
 
+            # get next station
             self.begin_station = next_station
             traject.append(next_station)
 
@@ -67,12 +70,11 @@ class Greedy():
 
     def make_lijnvoering(self): 
         """
-        Ensures that the trajectories are created,
-        and the score is calculated
+        Creates a line by adding trajectories, by adding trajectiories from get_traject
         """
         loops = 0
-
-        while True:
+        max_length = True
+        while max_length:
             all_traject = []
             time = 0
             while self.copy_connection != {}:
@@ -83,6 +85,7 @@ class Greedy():
                 loops += get_traject[2]
                 
                 remain_con = functions.get_remain_con(self.copy_connection.items())
+                # ends adding trajectories if there are already 5 connections left or less
                 if remain_con <= 5:
                     break
             con_notused_str = self.copy_connection
@@ -92,13 +95,10 @@ class Greedy():
                 continue
             break
 
+        # calculate q
         used_con = self.all_con - remain_con
         p = used_con/self.all_con
         T = len(all_traject)
         Min = time
         get_q = functions.get_q(p, T, Min)
-
-        # print(p, T, Min, get_q)
-            
-        # print(f"aantal loops: {loops}")
         return get_q, all_traject, Min, used_con, con_notused_str
