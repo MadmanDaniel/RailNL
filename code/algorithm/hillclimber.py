@@ -114,7 +114,7 @@ class Hillclimber():
 
     def get_best_q(self):
     
-        for i in range(10):
+        for i in range(1000):
             print(f"begin voor update: {self.best_traject}\n")
             print(f"begin voor update: {self.best_q, self.used_time }\n")
             self.delete_trajects()

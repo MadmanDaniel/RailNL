@@ -79,7 +79,7 @@ class Greedy():
                 loops += get_traject[2]
                 
                 remain_con = functions.get_remain_con(self.copy_connection.items())
-                if remain_con <= 10:
+                if remain_con <= 5:
                     break
             con_notused_str = self.copy_connection
             self.copy_connection = functions.my_copy(self.connection)
